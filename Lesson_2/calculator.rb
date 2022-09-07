@@ -26,4 +26,4 @@ number_two = Kernel.gets().chomp().to_i()
 Kernel.puts("> Please enter which operation you would like to perform: \n  add, subtract, multiply, or divide")
 operation = Kernel.gets().chomp().downcase
 
-puts "The result is #{calculate(operation, number_one, number_two)!}"
+puts "The result is #{calculate(operation, number_one, number_two)}!"
