@@ -16,10 +16,10 @@ end
 Kernel.puts("> Welcome to the calculator!")
 
 Kernel.puts("> Please enter the first number of the equation:")
-number_one = Kernel.gets().chomp().to_i()
+number_one = Kernel.gets().chomp().to_f()
 
 Kernel.puts("> Please enter the second number of the equation")
-number_two = Kernel.gets().chomp().to_i()
+number_two = Kernel.gets().chomp().to_f()
 
 # Next, ask the user to which operation they would like to perform
 
