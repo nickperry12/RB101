@@ -11,31 +11,31 @@ end
 # Define the method to calculate
 
 def calculate(operator, number_one, number_two)
-  operation = case operator
-                when '1'
-                  number_one.to_f + number_two.to_f
-                when '2'
-                  number_one.to_f - number_two.to_f
-                when '3'
-                  number_one.to_f * number_two.to_f
-                when '4'
-                  number_one.to_f / number_two.to_f
-              end
+  case operator
+  when '1'
+    number_one.to_f + number_two.to_f
+  when '2'
+    number_one.to_f - number_two.to_f
+  when '3'
+    number_one.to_f * number_two.to_f
+  when '4'
+    number_one.to_f / number_two.to_f
+  end
 end
 
 # this method will display our operation of choice in a message
 
 def operator_to_message(operator)
-operator = case operator
-            when '1'
-              'Adding'
-            when '2'
-              'Subtracting'
-            when '3'
-              'Multiplying'
-            when '4'
-              'Dividing'
-          end
+  case operator
+  when '1'
+    'Adding'
+  when '2'
+    'Subtracting'
+  when '3'
+    'Multiplying'
+  when '4'
+    'Dividing'
+  end
 end
 
 # These methods are used validate the users input
@@ -68,7 +68,9 @@ end
 
 prompt("Hi #{name}!")
 
-loop do # main loop
+# Main calculator loop
+
+loop do
   number_one = ''
   loop do
     prompt(MESSAGES['number_one'])
@@ -93,9 +95,7 @@ loop do # main loop
     end
   end
 
-  # Next, ask the user to which operation they would like to perform
-
-prompt(MESSAGES['which_operator'])
+  prompt(MESSAGES['which_operator'])
 
   operator = ''
   loop do
