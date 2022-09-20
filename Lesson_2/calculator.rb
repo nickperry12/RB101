@@ -35,7 +35,7 @@ operator = case operator
               'Multiplying'
             when '4'
               'Dividing'
-            end
+          end
 end
 
 # These methods are used validate the users input
