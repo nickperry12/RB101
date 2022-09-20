@@ -38,7 +38,7 @@ operator = case operator
             end
 end
 
-# These methods are used to validate whether the number is a float or integer
+# These methods are used validate the users input
 def integer?(num)
   num.to_i.to_s == num
 end
