@@ -1,6 +1,6 @@
 require 'pry'
 require 'yaml'
-MESSAGES = YAML.load_file('calculator_files.yml')
+MESSAGES = YAML.load_file('calculator_messages.yml')
 
 # method to style our prompts
 
