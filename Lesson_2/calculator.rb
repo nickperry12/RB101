@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 require 'yaml'
 MESSAGES = YAML.load_file('calculator_messages.yml')
 
@@ -53,7 +53,7 @@ end
 
 # First gather user input for numbers to be calculated
 
-prompt(MESSAGES['welcome'])
+prompt(MESSAGES['hey_fucko'])
 
 name = ''
 loop do
