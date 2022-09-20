@@ -13,14 +13,14 @@ end
 def calculate(operator, number_one, number_two)
   operation = case operator
                 when '1'
-                  number_one + number_two
+                  number_one.to_f + number_two.to_f
                 when '2'
-                  number_one - number_two
+                  number_one.to_f - number_two.to_f
                 when '3'
-                  number_one * number_two
+                  number_one.to_f * number_two.to_f
                 when '4'
-                  number_one / number_two
-                end
+                  number_one.to_f / number_two.to_f
+              end
 end
 
 # this method will display our operation of choice in a message
@@ -38,10 +38,17 @@ operator = case operator
             end
 end
 
-# This method will check if the number is valid
+# These methods are used to validate whether the number is a float or integer
+def integer?(num)
+  num.to_i.to_s == num
+end
+
+def float?(num)
+  num.to_f.to_s == num
+end
 
 def valid_number?(num)
-  num.is_a? Float
+  integer?(num) || float?(num)
 end
 
 # First gather user input for numbers to be calculated
@@ -65,7 +72,7 @@ loop do # main loop
   number_one = ''
   loop do
     prompt(MESSAGES['number_one'])
-    number_one = Kernel.gets().chomp().to_f
+    number_one = Kernel.gets().chomp()
 
     if valid_number?(number_one) == true
       break
@@ -77,7 +84,7 @@ loop do # main loop
   number_two = ''
   loop do
     prompt(MESSAGES['number_two'])
-    number_two = Kernel.gets().chomp().to_f
+    number_two = Kernel.gets().chomp()
 
     if valid_number?(number_two) == true
       break
