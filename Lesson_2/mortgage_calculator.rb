@@ -93,7 +93,7 @@ loop do
   prompt("Your mortgage payment is $#{result.round(2)} per month.")
   
   prompt(MESSAGES['another_one'])
-  answer == gets.chomp
+  answer = gets.chomp
   break if answer.downcase.start_with?('y')
 end
 
