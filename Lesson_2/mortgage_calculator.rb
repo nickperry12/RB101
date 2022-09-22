@@ -46,7 +46,7 @@ loop do
   end
 end
 
-prompt("Hi #{name}!")
+prompt("Hi #{name.strip}!")
 prompt(MESSAGES['welcome_two'])
 
 # main loop for calculator
@@ -90,10 +90,11 @@ loop do
   monthly_interest = interest_calc(annual_rate)
   result = mortgage_payment(loan_months, loan_amount, monthly_interest)
 
-  prompt("Your mortgage payment is $#{result} per month.")
+  prompt("Your mortgage payment is $#{result.round(2)} per month.")
+  
   prompt(MESSAGES['another_one'])
-  answer = gets.chomp
-  break unless answer.downcase.start_with?('y')
+  answer == gets.chomp
+  break if answer.downcase.start_with?('y')
 end
 
 prompt(MESSAGES['good_bye'])
