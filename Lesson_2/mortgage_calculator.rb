@@ -28,8 +28,8 @@ def loan_calc(loan_years)
   loan_years.to_f * 12
 end
 
-def mortgage_payment(loan_months, loan, monthly_interest)
-  loan * (monthly_interest.to_f / (1 - (1 + monthly_interest.to_f)**(-loan_months.to_f)))
+def mortgage_payment(loan_months, loan_amount, monthly_interest)
+  loan_amount.to_f * (monthly_interest.to_f / (1 - (1 + monthly_interest.to_f)**(-loan_months.to_f)))
 end
 
 # Welcome the user to the mortgage calculator program
@@ -89,8 +89,7 @@ loop do
   prompt(MESSAGES['calculate'])
   loan_months = loan_calc(loan_years)
   monthly_interest = interest_calc(annual_rate)
-  loan = loan_amount.to_f
-  result = mortgage_payment(loan_months, loan, monthly_interest)
+  result = mortgage_payment(loan_months, loan_amount, monthly_interest)
   
   prompt("Your mortgage payment is $#{result} per month.")
   prompt(MESSAGES['another_one'])
