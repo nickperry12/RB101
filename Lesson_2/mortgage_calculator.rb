@@ -94,7 +94,8 @@ loop do
   
   prompt(MESSAGES['another_one'])
   answer = gets.chomp
-  break if answer.downcase.start_with?('y')
+  break if answer.downcase.start_with?('n')
+  next if answer.downcase.start_with?('y')
 end
 
 prompt(MESSAGES['good_bye'])
