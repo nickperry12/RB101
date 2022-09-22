@@ -10,5 +10,6 @@ invalid: 'Sorry, that is not a valid number. Please enter in a valid number.'
 annual_rate: 'What is the Annual Percentage Rate?'
 loan_years: 'What is the loan duration in years?'
 calculate: 'Thank you. Please wait a moment while we calculate your mortgage payment...'
-another_one: 'Would you like to calculate another mortgage payment?'
+another_one: "Would you like to calculate another mortgage payment? 'Y' or 'N'"
 good_bye: "Thank you for using the Mortgage Calculator! Good-bye"
+continue_invalid: "Invalid answer. Please type either 'Y', 'Yes', or 'N', 'No'"
