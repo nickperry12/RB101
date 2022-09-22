@@ -1,0 +1,14 @@
+welcome: 'Welcome to the Mortgage Calculator! Please enter your name:'
+invalid_name: 'Entry invalid. Please enter in a valid name.'
+welcome_two: "Let's get started, first we will need to know a few things:\n
+  1) The loan amount\n
+  2) The Annual Percentage Rate (APR)(E.g. if 5%, enter 5)\n
+  3) The loan duration in years"
+loan: 'What is your loan amount?'
+duration: 'What is the duration of your loan?'
+invalid: 'Sorry, that is not a valid number. Please enter in a valid number.'
+annual_rate: 'What is the Annual Percentage Rate?'
+loan_years: 'What is the loan duration in years?'
+calculate: 'Thank you. Please wait a moment while we calculate your mortgage payment...'
+another_one: 'Would you like to calculate another mortgage payment?'
+good_bye: "Thank you for using the Mortgage Calculator! Good-bye"
