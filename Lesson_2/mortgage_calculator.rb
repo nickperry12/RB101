@@ -1,4 +1,5 @@
 require 'yaml'
+require 'io/console'
 MESSAGES = YAML.load_file('mortgage_messages.yml')
 
 # method definitions for program
@@ -49,6 +50,9 @@ end
 prompt("Hi #{name.strip}!")
 prompt(MESSAGES['welcome_two'])
 
+sleep 7
+$stdout.clear_screen
+
 # main loop for calculator
 
 loop do
@@ -89,9 +93,10 @@ loop do
   loan_months = loan_calc(loan_years)
   monthly_interest = interest_calc(annual_rate)
   result = mortgage_payment(loan_months, loan_amount, monthly_interest)
+  sleep 3
 
   prompt("Your mortgage payment is $#{result.round(2)} per month.")
-  
+
   prompt(MESSAGES['another_one'])
   answer = gets.chomp
   break if answer.downcase.start_with?('n')
