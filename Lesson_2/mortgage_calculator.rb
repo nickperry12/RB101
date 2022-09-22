@@ -1,4 +1,3 @@
-require 'pry'
 require 'yaml'
 MESSAGES = YAML.load_file('mortgage_messages.yml')
 
@@ -29,7 +28,8 @@ def loan_calc(loan_years)
 end
 
 def mortgage_payment(loan_months, loan_amount, monthly_interest)
-  loan_amount.to_f * (monthly_interest.to_f / (1 - (1 + monthly_interest.to_f)**(-loan_months.to_f)))
+  loan_amount.to_f * (monthly_interest.to_f/
+  (1 - (1 + monthly_interest.to_f)**(-loan_months.to_f)))
 end
 
 # Welcome the user to the mortgage calculator program
@@ -49,12 +49,11 @@ end
 prompt("Hi #{name}!")
 prompt(MESSAGES['welcome_two'])
 
-loan_month = ''
 # main loop for calculator
 
 loop do
   loan_amount = ''
-  loop do 
+  loop do
     prompt(MESSAGES['loan'])
     loan_amount = gets.chomp
     if valid_number?(loan_amount)
@@ -85,12 +84,12 @@ loop do
       prompt(MESSAGES['invalid'])
     end
   end
-  
+
   prompt(MESSAGES['calculate'])
   loan_months = loan_calc(loan_years)
   monthly_interest = interest_calc(annual_rate)
   result = mortgage_payment(loan_months, loan_amount, monthly_interest)
-  
+
   prompt("Your mortgage payment is $#{result} per month.")
   prompt(MESSAGES['another_one'])
   answer = gets.chomp
