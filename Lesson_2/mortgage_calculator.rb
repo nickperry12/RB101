@@ -28,7 +28,7 @@ def loan_calc(loan_years)
 end
 
 def mortgage_payment(loan_months, loan_amount, monthly_interest)
-  loan_amount.to_f * (monthly_interest.to_f/
+  loan_amount.to_f * (monthly_interest.to_f / 
   (1 - (1 + monthly_interest.to_f)**(-loan_months.to_f)))
 end
 
