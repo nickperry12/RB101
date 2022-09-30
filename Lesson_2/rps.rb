@@ -8,7 +8,7 @@ end
 
 def valid_input?(input)
   input.downcase == 'rock' || input.downcase == 'scissors' ||
-  input.downcase == 'paper'
+    input.downcase == 'paper'
 end
 
 # array for CPU choices
@@ -72,7 +72,7 @@ while in_game
     prompt("#{username} wins!")
   end
 
-  #player outcomes if they choose scissors
+  # player outcomes if they choose scissors
   if player_choice == 'scissors' && cpu_choice == 'rock'
     prompt("CPU Wins!")
   end
@@ -82,13 +82,14 @@ while in_game
   if player_choice == 'scissors' && cpu_choice == 'scissors'
     prompt("Stalemate! No one wins!")
   end
-  
+
   prompt(MSG['play_again'])
 
-  while true
+  loop do
     play_again = gets.chomp.downcase
     case play_again
     when "y", "yes"
+      prompt("Great! Let's play.")
     when "n", "no"
       in_game = false
       prompt(MSG['goodbye'])
