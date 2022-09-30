@@ -57,18 +57,18 @@ while in_game
   # game outcomes
 
   if ((player_choice == 'rock' || player_choice == 'r') &&
-    cpu_choice == 'scissors') ||
-    ((player_choice == 'paper' || player_choice == 'p') &&
-    cpu_choice == 'rock') ||
-    ((player_choice == 'scissors' || player_choice == 's') &&
-    cpu_choice == 'paper')
+     cpu_choice == 'scissors') ||
+     ((player_choice == 'paper' || player_choice == 'p') &&
+     cpu_choice == 'rock') ||
+     ((player_choice == 'scissors' || player_choice == 's') &&
+     cpu_choice == 'paper')
     prompt("#{username} wins!")
   elsif ((player_choice == 'rock' || player_choice == 'r') &&
-    cpu_choice == 'paper') ||
-    ((player_choice == 'paper' || player_choice == 'p') &&
-    cpu_choice == 'scissors') ||
-    ((player_choice == 'scissors' || player_choice == 's') &&
-    cpu_choice == 'rock')
+        cpu_choice == 'paper') ||
+        ((player_choice == 'paper' || player_choice == 'p') &&
+        cpu_choice == 'scissors') ||
+        ((player_choice == 'scissors' || player_choice == 's') &&
+        cpu_choice == 'rock')
     prompt("The computer wins!")
   else
     prompt("It's a stalemate! No one wins.")
