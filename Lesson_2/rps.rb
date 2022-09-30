@@ -87,7 +87,6 @@ while in_game
       prompt(MSG['goodbye'])
     else
       prompt(MSG['invalid'])
-      next
     end
     break
   end
