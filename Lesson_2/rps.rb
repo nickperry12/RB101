@@ -51,7 +51,11 @@ while in_game
     end
   end
 
+  prompt("#{username} chooses #{player_choice}!")
+  prompt("CPU chooses #{cpu_choice}!")
+
   # player outcomes if they choose rock
+
   if (player_choice == 'rock' || player_choice == 'r')\
     && cpu_choice == 'paper'
     prompt("CPU Wins!")
@@ -66,6 +70,7 @@ while in_game
   end
 
   # player outcomes if they choose paper
+
   if (player_choice == 'paper' || player_choice == 'p')\
     && cpu_choice == 'paper'
     prompt("Stalemate! No one wins!")
@@ -80,6 +85,7 @@ while in_game
   end
 
   # player outcomes if they choose scissors
+
   if (player_choice == 'scissors' || player_choice == 's')\
     && cpu_choice == 'rock'
     prompt("CPU Wins!")
@@ -99,6 +105,7 @@ while in_game
     play_again = gets.chomp.downcase
     case play_again
     when "y", "yes"
+      system("clear") || system("cls")
       prompt("Great! Let's play.")
     when "n", "no"
       in_game = false
