@@ -54,49 +54,24 @@ while in_game
   prompt("#{username} chooses #{player_choice}!")
   prompt("CPU chooses #{cpu_choice}!")
 
-  # player outcomes if they choose rock
+  # game outcomes
 
-  if (player_choice == 'rock' || player_choice == 'r')\
-    && cpu_choice == 'paper'
-    prompt("CPU Wins!")
-  end
-  if (player_choice == 'rock' || player_choice == 'r')\
-    && cpu_choice == 'scissors'
+  if ((player_choice == 'rock' || player_choice == 'r') &&
+    cpu_choice == 'scissors') ||
+    ((player_choice == 'paper' || player_choice == 'p') &&
+    cpu_choice == 'rock') ||
+    ((player_choice == 'scissors' || player_choice == 's') &&
+    cpu_choice == 'paper')
     prompt("#{username} wins!")
-  end
-  if (player_choice == 'rock' || player_choice == 'r')\
-    && cpu_choice == 'rock'
-    prompt("Stalemate! No one wins!")
-  end
-
-  # player outcomes if they choose paper
-
-  if (player_choice == 'paper' || player_choice == 'p')\
-    && cpu_choice == 'paper'
-    prompt("Stalemate! No one wins!")
-  end
-  if (player_choice == 'paper' || player_choice == 'p')\
-    && cpu_choice == 'scissors'
-    prompt("CPU Wins!")
-  end
-  if (player_choice == 'paper' || player_choice == 'p')\
-    && cpu_choice == 'rock'
-    prompt("#{username} wins!")
-  end
-
-  # player outcomes if they choose scissors
-
-  if (player_choice == 'scissors' || player_choice == 's')\
-    && cpu_choice == 'rock'
-    prompt("CPU Wins!")
-  end
-  if (player_choice == 'scissors' || player_choice == 's')\
-    && cpu_choice == 'paper'
-    prompt("#{username} wins!")
-  end
-  if (player_choice == 'scissors' || player_choice == 's')\
-    && cpu_choice == 'scissors'
-    prompt("Stalemate! No one wins!")
+  elsif ((player_choice == 'rock' || player_choice == 'r') &&
+    cpu_choice == 'paper') ||
+    ((player_choice == 'paper' || player_choice == 'p') &&
+    cpu_choice == 'scissors') ||
+    ((player_choice == 'scissors' || player_choice == 's') &&
+    cpu_choice == 'rock')
+    prompt("The computer wins!")
+  else
+    prompt("It's a stalemate! No one wins.")
   end
 
   prompt(MSG['play_again'])
