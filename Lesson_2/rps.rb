@@ -6,15 +6,25 @@ def prompt(string)
   puts "=> #{string}"
 end
 
-def valid_input?(input)
-  input == 'rock' || input == 'scissors' ||
-    input == 'paper' || input == 'p' || input == 'r' ||
-    input == 's'
+def win?(first, second)
+  (first == 'rock' && second == 'scissors') ||
+  (first == 'paper' && second == 'rock') ||
+  (first == 'scissors' && second == 'paper')
 end
 
-# array for CPU choices
+def display_results(player, computer, username)
+  if win?(player, computer)
+    prompt("#{username} wins!")
+  elsif win?(computer, player)
+    prompt("The computer wins!")
+  else
+    prompt("It's a stalemate! No one wins.")
+  end
+end
 
-cpu_options = ['rock', 'paper', 'scissors']
+# arrays for player/CPU choices
+
+GAME_CHOICES = %w[rock paper scissors]
 
 # start of program
 
@@ -22,8 +32,8 @@ prompt(MSG['welcome'])
 username = ''
 loop do
   username = gets.chomp
-  if username.nil? || username.empty? || username.include?(' ')
-    prompt("Please enter a valid username! (Make sure there are no spaces)")
+  if username.nil? || username.empty? #|| username.include?(' ')
+    prompt("Please enter a valid username! (You cannot leave the field")
   else
     break
   end
@@ -31,7 +41,7 @@ end
 
 prompt("Welcome #{username}! These are the rules:")
 prompt(MSG['rules'])
-sleep 20
+sleep 15
 system("clear") || system("cls")
 
 # main loop
@@ -40,14 +50,14 @@ in_game = true
 while in_game
   prompt(MSG['user_input'])
   player_choice = ''
-  cpu_choice = cpu_options.sample
+  cpu_choice = GAME_CHOICES.sample
 
   loop do
     player_choice = gets.chomp.downcase
-    if valid_input?(player_choice) == false
-      prompt(MSG['invalid_input'])
-    else
+    if GAME_CHOICES.include?(player_choice)
       break
+    else
+      prompt(MSG['invalid_input'])
     end
   end
 
@@ -56,23 +66,7 @@ while in_game
 
   # game outcomes
 
-  if ((player_choice == 'rock' || player_choice == 'r') &&
-     cpu_choice == 'scissors') ||
-     ((player_choice == 'paper' || player_choice == 'p') &&
-     cpu_choice == 'rock') ||
-     ((player_choice == 'scissors' || player_choice == 's') &&
-     cpu_choice == 'paper')
-    prompt("#{username} wins!")
-  elsif ((player_choice == 'rock' || player_choice == 'r') &&
-        cpu_choice == 'paper') ||
-        ((player_choice == 'paper' || player_choice == 'p') &&
-        cpu_choice == 'scissors') ||
-        ((player_choice == 'scissors' || player_choice == 's') &&
-        cpu_choice == 'rock')
-    prompt("The computer wins!")
-  else
-    prompt("It's a stalemate! No one wins.")
-  end
+  display_results(player_choice, cpu_choice, username)
 
   prompt(MSG['play_again'])
 
@@ -87,6 +81,7 @@ while in_game
       prompt(MSG['goodbye'])
     else
       prompt(MSG['invalid'])
+      next
     end
     break
   end
