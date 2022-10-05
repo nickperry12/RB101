@@ -1,14 +1,16 @@
 welcome: "Welcome to Rock, Paper, Scissors! Please enter your name:"
 rules: "Player will choose either rock, paper or scissors. \n
 The computer (CPU) will choose from the same options. \n
-Rock beats scissors,\n
-scissors beats paper,\n
-and paper beats rock.\n
+Rock beats Scissors and Lizard,\n
+Scissors beats Paper and Lizard,\n
+Paper beats Rock and Spock,\n
+Spock beats Rock and Scissors,\n
+and Lizard beats Paper and Spock.\n
 If Player and CPU choose the same, it's a stalemate.\n
 \n
 Good luck!"
-user_input: "Please choose either rock, paper, or scissors!"
-invalid_input: "Invalid input. Please enter either rock, paper or scissors."
+user_input: "Please choose either [R]ock, [P]aper, [S]cissors, [L]izard, or [Sp]ock"
+invalid_input: "Invalid input. Please enter either [R]ock, [P]aper, [S]cissors, [L]izard, or [Sp]ock."
 play_again: "Would you like to play again?"
 goodbye: "Thank you for playing. Goodbye!"
 invalid: "Invalid input. Please choose 'yes' or 'no'"
