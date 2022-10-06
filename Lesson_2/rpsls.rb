@@ -43,8 +43,8 @@ end
 
 prompt("Welcome #{username}! These are the rules:")
 prompt(MSG['rules'])
-sleep 15
-system("clear") || system("cls")
+# sleep 15
+# system("clear") || system("cls")
 
 # main loop
 
@@ -59,7 +59,7 @@ while in_game
       player_choice = gets.chomp.downcase
       if GAME_CHOICES.include?(player_choice)
         break
-      elsif case player_choice
+      elsif case
             when player_choice == 'r' then (player_choice = 'rock')
             when player_choice == 's' then (player_choice = 'scissors')
             when player_choice == 'p' then (player_choice = 'paper')
