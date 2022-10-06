@@ -106,7 +106,7 @@ while in_game
     end
 
     prompt("The score is #{username} #{stats[:player_wins]},\
- CPU #{stats[:cpu_wins]}, #{stats[:tie]}")
+ CPU #{stats[:cpu_wins]}, #{stats[:tie]} ties.")
     if stats[:player_wins] == 2
       prompt("#{username} is the Grand Champion! Congratulations!")
       break
