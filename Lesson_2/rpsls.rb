@@ -43,8 +43,8 @@ end
 
 prompt("Welcome #{username}! These are the rules:")
 prompt(MSG['rules'])
-# sleep 15
-# system("clear") || system("cls")
+sleep 15
+system("clear") || system("cls")
 
 # main loop
 
