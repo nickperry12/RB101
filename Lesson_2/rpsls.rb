@@ -57,15 +57,19 @@ while in_game
   loop do
     loop do
       player_choice = gets.chomp.downcase
+      if player_choice == 'r'
+        player_choice = 'rock'
+      elsif player_choice == 'p'
+        player_choice = 'paper'
+      elsif player_choice == 's'
+        player_choice = 'scissors'
+      elsif player_choice == 'l'
+        player_choice = 'lizard'
+      elsif player_choice == 'sp'
+        player_choice = 'spock'
+      end
+
       if GAME_CHOICES.include?(player_choice)
-        break
-      elsif case
-            when player_choice == 'r' then (player_choice = 'rock')
-            when player_choice == 's' then (player_choice = 'scissors')
-            when player_choice == 'p' then (player_choice = 'paper')
-            when player_choice == 'l' then (player_choice = 'lizard')
-            when player_choice == 'sp' then (player_choice = 'spock')
-            end
         break
       else
         prompt(MSG['invalid_input'])
