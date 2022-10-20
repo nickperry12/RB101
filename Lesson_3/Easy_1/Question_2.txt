@@ -1,0 +1,33 @@
+Describe the difference between ! and ? in Ruby. 
+And explain what would happen in the following scenarios:
+
+1) what is != and where should you use it?
+2) put ! before something, like !user_name
+3) put ! after something, like words.uniq!
+4) put ? before something
+5) put ? after something
+6) put !! before something, like !!user_name
+
+[!] is the Logical Not operator. It is used to invert an expressions boolean value.
+[?] is a ternary operator and is used to write compact if/else statements.
+If these are seen at the end of a method, they are apart of the method name itself.
+
+1) [!=] is the 'not equal' to operator. It is used to say that the expression on the
+left side of the operator is not equal to the expression on the right
+
+2) If you put [!] before something, like a username, it will reverse the boolean value
+of that object. For example, if you were to write !true, the output would be false. 
+
+3) While it is not always the case, putting [!] after a method mutates the caller. 
+So if you were to write words.uniq!, the object words would be mutated and the changes
+would be permanent. 
+
+4) Putting a [?] before an object will return an error
+
+5) Putting a [?] after something depends on what that something is. Putting it after
+an object (like a variable) will return an error. However, putting it after a method
+(this is dependent on the method) indicates that a method returns a boolean value, or
+an object to indicate a truthy value.
+
+6) Putting [!!] before an object will check the boolean value of that object.
+For example -- !!(2 + 5 == 8) will return false.

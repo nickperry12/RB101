@@ -1,0 +1,13 @@
+The Array#bsearch method is used to search ordered Arrays more quickly than #find and #select
+can. Assume you have the following code:
+
+a = [1, 4, 8, 11, 15, 19]
+
+How would you search this Array to find the first element whose value exceeds 8?
+
+value = a.bsearch { |num| num > 8}
+
+The signature for bsearch (bsearch {|element| ... } → object) shows that the method
+takes a block as an argument. The block has two modes - find-minimum and find-any.
+Find-minimum mode will search through the array and will return the first number that
+returns a truthy value. We can then assign that object to a local variable value. 

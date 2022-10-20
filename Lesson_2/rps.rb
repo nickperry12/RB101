@@ -8,8 +8,8 @@ end
 
 def win?(first, second)
   (first == 'rock' && second == 'scissors') ||
-  (first == 'paper' && second == 'rock') ||
-  (first == 'scissors' && second == 'paper')
+    (first == 'paper' && second == 'rock') ||
+    (first == 'scissors' && second == 'paper')
 end
 
 def display_results(player, computer, username)
@@ -32,8 +32,8 @@ prompt(MSG['welcome'])
 username = ''
 loop do
   username = gets.chomp
-  if username.nil? || username.empty? #|| username.include?(' ')
-    prompt("Please enter a valid username! (You cannot leave the field")
+  if username.nil? || username.empty? || username.include?(' ')
+    prompt("Please enter a valid username! (You cannot leave the field blank)")
   else
     break
   end

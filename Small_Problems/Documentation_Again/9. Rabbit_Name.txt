@@ -1,0 +1,22 @@
+In a very early assignment at Launch School, you are tasked with writing a program that
+loads some text messages from a YAML file. We do this with YAML::load_file:
+
+require 'yaml'
+MESSAGES = YAML.load_file('calculator_messages.yml')
+
+Find the documentation for YAML::load_file.
+
+Solution:
+
+Because we have to require 'yaml', we know that the documentation won't be apart of the core API,
+and instead we should look to the Standard Library to find the documentaion. The YAML page 
+does not have much information in it, but points you in the direction of the Psych module:
+
+For more advanced details on the implementation see Psych, and also check out yaml.org
+for spec details and other helpful information.
+
+When we go to the Psych module, we are able to find ::load_file which states:
+
+Loads the document contained in filename. Returns the yaml contained in filename as a
+Ruby object, or if the file is empty, it returns the specified fallback return value,
+which defaults to false. See load for options.

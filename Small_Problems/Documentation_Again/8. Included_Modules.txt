@@ -1,0 +1,24 @@
+**REVIEW FURTHER. NEED TO FURTHER EXPLORE WHERE TO FIND THESE METHODS IF NOT INCLUDED
+**IN THE CLASS YOU ORIGINALLY CHECKED.
+
+Use irb to run the following code:
+
+a = [5, 9, 3, 11]
+puts a.min
+
+Find the documentation for the #min method and change the above code to print the two smallest values
+in the array.
+
+Solution:
+
+The documentation states:
+Returns the element with the minimum element according to a given criterion. The ordering
+of equal elements is indeterminate and may be unstable.
+
+min(n) → array
+
+We could edit the code to be:
+
+puts a.min(2) 
+
+Which will output the two smallest values in the array => 3, 5

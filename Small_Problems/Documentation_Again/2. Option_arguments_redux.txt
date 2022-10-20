@@ -1,0 +1,27 @@
+Assume you have the following code:
+
+require 'date'
+
+puts Date.civil
+puts Date.civil(2016)
+puts Date.civil(2016, 5)
+puts Date.civil(2016, 5, 13)
+
+Solution:
+
+Because we need to import the date class, we know it won't be found in the core library,
+but instead can be found in the standard library
+
+1. Date.civil => -4712-01-01
+This is the default return output. -4712 marks the first year of the Julian period, 1m, 1d are
+the default month and date, respectively. These are the default values which are returned
+when no argument is given.
+
+2. Date.civil(2016) => 2016-01-01
+No arguments were provided for the month and day, but 2016 was provided for the year.
+
+3. Date.civil(2016, 5) => 2016-05-01
+Arguments were provided the year and month, but no for the day, so it defaults to 01.
+
+4. Date.civil(2016, 5, 13)
+Arguments were provided for year, month and day. 

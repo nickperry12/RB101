@@ -1,0 +1,13 @@
+What does this code print?
+
+5.step(to: 10, by: 3) { |value| puts value }
+
+The documentation states: Generates a sequence of numbers; with a block given, 
+traverses the sequence. step(to = nil, by = 1) {|n| ... } → self
+
+The sequence begins with self: 5, and goes to the limit: 10, incremented by: 3.
+
+It outputs
+5
+8 
+and returns 5.

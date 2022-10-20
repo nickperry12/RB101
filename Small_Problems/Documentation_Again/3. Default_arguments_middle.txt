@@ -1,0 +1,23 @@
+Default Arguments in the middle
+
+Consider the following method and a call to that method:
+
+def my_method(a, b = 2, c = 3, d)
+  p [a, b, c, d]
+end
+
+my_method(4, 5, 6)
+
+Use the ruby documentation to determine what the code will print
+
+Solution:
+
+docs.ruby-lang.org states that "when the method defines default arguments, you do
+not need to supply all the arguments to the method". Ruby fills in the missing arguments
+in order. 
+
+my_method(4, 5, 6) => [4, 5, 3, 6]
+
+The a parameter is assigned the integer 4, parameters c and d are already assigned, so 
+the integer 6 is assigned to parameter d. Ruby will then look to the default parameters and 
+assign 5 to the first one, in this case parameter c.
