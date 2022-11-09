@@ -1,6 +1,5 @@
 require 'yaml'
 MSG = YAML.load_file('rps_messages.yml')
-require 'pry'
 
 results = ['Hooray! You won!', 'Oh no! The CPU wins', "It's a tie!"]
 

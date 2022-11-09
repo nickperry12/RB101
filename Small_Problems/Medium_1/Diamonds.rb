@@ -31,9 +31,13 @@ point they begin to decrease by two
 - The first and last row will always end with 1 diamond
 
 Examples/Test Cases:
-diamond(1) * diamond(3) *
+diamond(1) * 
+diamond(3) 
+ *
 ***
- * diamond(9) *
+ * 
+diamond(9) 
+    *
    ***
   *****
  *******
@@ -60,20 +64,46 @@ Algorithm:
   - iterate through `rows` again but this time in reverse
 =end
 
+# def diamond(n)
+#   rows = []
+#   stars = "*"
+#   number_of_stars = 1
+
+#   loop do
+#     rows << (stars * number_of_stars)
+#     number_of_stars += 2
+#     break if rows.length == n / 2
+#   end
+
+#   rows.each { |row| puts row.center(n) }
+#   puts (stars * n).center(n)
+#   rows.reverse.each { |row| puts row.center(n) }
+# end
+
 def diamond(n)
-  rows = []
-  stars = "*"
-  number_of_stars = 1
+  rows = (1..n).step(2).to_a
+  rows += rows[0..-2].reverse
 
-  loop do
-    rows << (stars * number_of_stars)
-    number_of_stars += 2
-    break if rows.length == n / 2
+  rows.each do |row|
+    puts ('*' * row).center(n)
   end
-
-  rows.each { |row| puts row.center(n) }
-  puts (stars * n).center(n)
-  rows.reverse.each { |row| puts row.center(n) }
 end
 
 diamond(17)
+
+# def mitch_diamond(n)
+#   rows = []
+#   counter = n / 2
+#   star = '*'
+#   star_counter = 1
+#   loop do
+#     rows << star * star_counter
+#     star_counter += 1
+#     break if star_counter == n + 1
+#   end
+#   rows.each do |ele|
+#     puts ele.center(star_counter)
+#   end
+# end
+
+# mitch_diamond(9)
