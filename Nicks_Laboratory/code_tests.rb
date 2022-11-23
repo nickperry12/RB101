@@ -43,20 +43,20 @@ create a method `solve` that takes one argument (a string)
 
 =end 
 
-# def solve(string)
-#   collected_vowels = []
-#   vowels = 'aeiouAEIOU'
+def solve(string)
+  collected_vowels = []
+  vowels = 'aeiouAEIOU'
 
-#   string.split(//).each do |letter|
-#     if vowels.include?(letter)
-#       collected_vowels << letter
-#     end
-#   end
+  string.split(//).each do |letter|
+    if vowels.include?(letter)
+      collected_vowels << letter
+    end
+  end
 
-#   collected_vowels.each_with_object({}) do |vowel, hash|
-#     hash[vowel] = collected_vowels.count(vowel)
-#   end
-# end
+  collected_vowels.each_with_object({}) do |vowel, hash|
+    hash[vowel] = collected_vowels.count(vowel)
+  end
+end
 
 
 p solve("codewarriors")

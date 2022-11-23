@@ -66,12 +66,11 @@ def century(year)
   else
     string_century + 'th'
   end
-end
 
-puts century(2021)
-puts century(1)
-puts century(2000)
-puts century(2751)
+  if string_century[-2] == 1
+    string_century + 'th'
+  end
+end
 
 p century(2000) == '20th'
 p century(2001) == '21st'
