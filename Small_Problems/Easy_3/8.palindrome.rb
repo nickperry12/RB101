@@ -41,14 +41,14 @@ create a method called `palindrome` that takes one argument
 C:
 =end
 
-# def palindrome?(string)
-#   string == string.reverse
-# end
+def palindrome?(string)
+  string == string.reverse
+end
 
-# p palindrome?('madam') == true
-# p palindrome?('Madam') == false          # (case matters)
-# p palindrome?("madam i'm adam") == false # (all characters matter)
-# p palindrome?('356653') == true
+p palindrome?('madam') == true
+p palindrome?('Madam') == false          # (case matters)
+p palindrome?("madam i'm adam") == false # (all characters matter)
+p palindrome?('356653') == true
 
 =begin
 Further Exploration
@@ -77,7 +77,8 @@ Initialize a constant variable 'ALPHABET' and assign an array filled with
 the letters of the alphabet to it
 
 Create a method called 'palindromic?' that takes one argument (string or array)
-- initialize local variable `reverse_collection` and set it to an empty array
+- initialize local variable `reverse_collection` set it to the same collection
+object that is passed
 - initialize local variable `counter` and set it to collection size - 1
 - iterate through the given collection
 a) append the last element into `reverse_collection`
@@ -98,6 +99,7 @@ def palindromic(collection)
   reverse_collection == collection
 end
 
-p palindromic("madam") == true
-p palindromic([1, 2, 3, 4, 5, 4, 3, 2, 1]) == true
-p palindromic("not a palindrome") == false
+p palindromic('madam') == true
+p palindromic('Madam') == false          # (case matters)
+p palindromic("madam i'm adam") == false # (all characters matter)
+p palindromic('356653') == true

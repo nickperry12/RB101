@@ -77,7 +77,6 @@ integer object equivalent. Do this for 0-9.
 
 create a method `string_to_integer` that has one parameter `str_number`
 - create an empty collection called `numbers`
-- create a counter and set it to 0
 - split the string into individual characters
 - iterate through the collection of characters and compare them to the values in
 the DIGITS collection
@@ -86,8 +85,7 @@ the DIGITS collection
 - perform the following sequence
   1) multiply the first number in the collection by 10 and add the second number
   to the result
-  2) add 1 to `counter`
-  3) repeat this sequence until you reach the second to last number in the
+  2) repeat this sequence until you reach the second to last number in the
   collection of numbers
 - return the final result
 
