@@ -106,7 +106,6 @@ DIGITS = {"0" => 0,
 
 def string_to_integer(str_number)
   numbers = Array.new
-  counter = 0
   str_number.chars.each do |num|
     numbers << DIGITS.values_at(num)
   end
@@ -116,3 +115,114 @@ def string_to_integer(str_number)
 end
 
 p string_to_integer("4321")
+
+# Further Exploration - Converting Hexadecimal to Integer
+
+=begin
+
+P: 
+
+Need to create a method that not only converts string digits to their integer
+equivalent, but hexadecimals as well. Hexadecimals and the integer equivalents
+are as follows:
+
+'10' = 'a'
+'11' = 'b'
+'12' = 'c'
+'13' = 'd'
+'14' = 'e'
+'15' = 'f'
+
+Notes:
+
+Previously, when converting, we used the `inject` method and used the following
+formula: `num1 * 10 + num2` where `num1` and `num2` had elements from an array
+bound to them, e.g., on the first iteration `num1` was bounded to index 0, and
+`num2` was bounded to index 1. This repeated until `num2` was finally bound to
+the element at the last index.
+
+E/TC:
+
+hexadecimal_to_integer('4D9f') == 19871
+
+Notes:
+- Looking at the output, we can see that the formula we used previously won't
+work
+
+- If we took each hexadecimal character and plugged in the integer equivalent,
+we would have '413915'
+
+- How did we get this number then?
+
+- Hexadecimals are a 16 point system. So to get the decimal equivalent, we need
+to multiply each number by 16**n, with `n` starting at 0 and increasing by 1 as
+you multiply each number. 
+
+- Using our test case, it would loko like this:
+'4D9F'
+F * 16**0
+9 * 16**1
+D * 16**2
+4 * 16**3
+
+D: 
+
+Input: String
+Output: Integer
+
+- Within our method we can use an array to store the split hexadecimals
+and then iterate over them
+
+- If you look at the formula to get the integer equivalent of th hexadecimals,
+notice that the first number is multiple by 16**0. `n` starts at 0, much like
+the indexes of arrays. We can reverse the order of our given hexadecimal and
+multiply 16 by the index.
+
+A:
+
+Given a hexadecimal number
+Split the number into individual digits
+Convert the letter digits to their integer equivalents
+Reverse the order the given digits
+Multiply each digit by 16**n, with `n` being the digits index number
+Return the sum
+
+=end
+
+HEXADECIMALS = {
+  '0' => 0,
+  '1' => 1,
+  '2' => 2,
+  '3' => 3,
+  '4' => 4,
+  '5' => 5,
+  '6' => 6,
+  '7' => 7,
+  '8' => 8,
+  '9' => 9,
+  'A' => 10,
+  'B' => 11,
+  'C' => 12,
+  'D' => 13,
+  'E' => 14,
+  'F' => 15
+}
+
+def hexadecimal_to_integer(hex)
+  digits = hex.chars
+  digits.map! do |digit|
+    digit = HEXADECIMALS[digit]
+  end
+  digits.reverse!
+
+  counter = 0
+  loop do
+    digits[counter] = digits[counter] * 16**counter
+    counter += 1
+    break if counter == digits.size
+  end
+
+  digits.sum
+end
+
+p hexadecimal_to_integer("4D9F")
