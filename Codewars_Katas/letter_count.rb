@@ -12,7 +12,7 @@ The key also must be a symbol, not a string.
 
 Essentially, we want to split the string into individual chars, iterate through
 the characters, set the current character as a symbol and then set the value
-as the count of each character.
+as the count of that character.
 
 Explicit Rules:
 
