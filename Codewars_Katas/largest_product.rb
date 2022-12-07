@@ -1,3 +1,5 @@
+require 'pry'
+
 =begin
 
 Complete the greatestProduct method so that it'll find the greatest product of
@@ -59,7 +61,7 @@ Given a string of digits
 =end
 
 def greatest_product(n)
-  array_of_nums = n.chars.map! { |digits| digits.to_i}
+  array_of_nums = n.chars.map { |digits| digits.to_i}
   array_of_products = Array.new
   first_num = 0
   last_num = first_num + 4
@@ -68,6 +70,7 @@ def greatest_product(n)
     array_of_products << array_of_nums[first_num..last_num]
     first_num += 1
     last_num += 1
+    binding.pry
     break if last_num == array_of_nums.size
   end
 
@@ -75,5 +78,5 @@ def greatest_product(n)
   array_of_products[-1]
 end
 
-# p greatest_product("123834539327238239583") == 3240
+p greatest_product("123834539327238239583") == 3240
 p greatest_product("395831238345393272382") == 3240
