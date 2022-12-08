@@ -1,0 +1,12 @@
+Steps for the game:
+
+1) Display an empty 3x3 board
+2) Ask the user to mark a square
+3) Computer marks a square
+4) Display the updated board
+5) If there is a winner, display the winner
+6) If the board is full and no winner, display a tie
+7) If no winner and board is not full, go to step 2
+8) Ask user if they'd like to play again
+9) If yes, go to step 1
+10) If no, game ends

@@ -90,20 +90,3 @@ def diamond(n)
 end
 
 diamond(17)
-
-# def mitch_diamond(n)
-#   rows = []
-#   counter = n / 2
-#   star = '*'
-#   star_counter = 1
-#   loop do
-#     rows << star * star_counter
-#     star_counter += 1
-#     break if star_counter == n + 1
-#   end
-#   rows.each do |ele|
-#     puts ele.center(star_counter)
-#   end
-# end
-
-# mitch_diamond(9)
