@@ -10,3 +10,43 @@ Steps for the game:
 8) Ask user if they'd like to play again
 9) If yes, go to step 1
 10) If no, game ends
+
+AI for detecting board threat:
+
+We have our board squares stored in a hash as key-value pairs, where the key is
+the integer representing a square, and the value is either single space in a
+string (' ') or a player marker ('X' or 'O')
+
+We want our AI to detect whether a winning line (either horizontal, diagonal or
+vertical) consists of two player markers.
+
+We currently have an array filled with sub-arrays, with each sub-array
+representing a winning line. How can we use these data structures to detect a
+threat?
+
+We can't use the select methods on the WINNING_LINES array because these arrays
+don't have the player markers in them, our hash does. But we could use the
+`values_at` method. We can iterate through WINNING_LINES with the `each`
+and pass the current line into the `values_at` method like so:
+
+def computer_detect_threat(brd)
+  WINNING_LINES.each do |line|
+    if brd.values_at(*line).count(PLAYER_MARKER) == 2 && brd.values_at(*line).count(' ') == 1
+      return line
+    end
+    nil
+  end
+end
+
+We can use this method in our `computer_move` method
+
+if computer_detect_threat(brd) == true
+  computer_detect_threat(brd).each do |square|
+    if square == ' '
+      brd[square] = COMPUTER_MARKER
+    end
+  end
+else
+  square = empty_squares(brd).sample
+  brd[square] = COMPUTER_MARKER
+end
