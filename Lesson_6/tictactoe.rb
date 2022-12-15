@@ -65,13 +65,25 @@ def player_move!(brd)
   brd[square] = PLAYER_MARKER
 end
 
-def computer_move(brd)
-  square = empty_squares(brd).sample
-  brd[square] = COMPUTER_MARKER
+def computer_move!(brd)
+  if !!computer_detect_threat(brd)
+    square = computer_detect_threat(brd)
+    brd[square]
+  else
+    square = empty_squares(brd).sample
+    brd[square] = COMPUTER_MARKER
+  end
 end
 
-def computer_detect_threat()
-
+def computer_detect_threat(brd)
+  square = WINNING_LINES.map do |line|
+    if brd.values_at(*line).count(PLAYER_MARKER) == 2 &&
+       brd.values_at(*line).count(' ') == 1
+      square = line.select { |item| item == ' ' }
+      return square[0]
+    end
+    nil
+  end
 end
 
 def board_full?(brd)
@@ -144,7 +156,8 @@ while in_game
     display_board(board)
     player_move!(board)
     break if winner?(board) || board_full?(board)
-    computer_move(board)
+    computer_move!(board)
+    binding.pry
     break if winner?(board) || board_full?(board)
   end
 
