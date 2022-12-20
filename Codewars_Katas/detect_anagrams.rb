@@ -39,15 +39,22 @@ Notes:
 Think about how we we're going to compare the two strings. We could use the
 `include?` method to compare each letter and remove them if they're not a match.
 
+If a letter appears more than once, remove the second instance of that character.
+
+
+
 E:
 
-Example
+p anagram_difference('', '') == 0
+p anagram_difference('a', '') == 1
+p anagram_difference('', 'a') == 1
+p anagram_difference('ab', 'a') == 1
+p anagram_difference('ab', 'ba') == 0
+p anagram_difference('ab', 'cd') == 4
+p anagram_difference('aab', 'a') == 2
+p anagram_difference('a', 'aab') == 2
+p anagram_difference('codewars', 'hackerrank') == 10
 
-First word : c (od) e (w) ar (s) (4 letters removed)
-
-Second word :(ha) c (k) er (r) a (nk) (6 letters removed)
-
-Result : 10
 
 D: 
 
@@ -55,46 +62,56 @@ Input: two strings
 Intermediate: Array
 Output: Integer
 
+Methods we can use:
+
+Array#include?
+- use this to compare the elements in one array appear in the other
+
+#<<
+- can use this to add the selected letters into our array of rejected chars
+
+
+
 A:
 
-given two strings
-- split each string into letters and store into separate arrays
-- create an empty array for rejected letters
-- iterate through the first string and compare each letter with the split
-letters of string two
-a) if the letters aren't included in string two, add that letter to rejected letters
-b) however, if the letter is inlcuded but there is more than one, add it to
-rejected letters and delete that character from the string
-- repeat previous steps for string two
-- return the count of rejected letters array
-
+/* given two strings */
+1. split each string into characters
+2. create an empty array `rejected`
+3. if one string is larger than the other:
+  a) iterate through the shorter string
+  b) check to see if the chars in the shorter string appear in the larger string
+  c) if they do not, store them in the `rejected` array
+  d) check to see if there is more than one instance of that char, and if there
+  is, store it in the rejected chars array
+4. remove multiple instances of chars in the `rejected` array
+5. return `rejected` count
 
 =end
 
 def anagram_difference(str1, str2)
-  letters_one = str1.chars
-  letters_two = str2.chars
-  rejected_letters = Array.new
+  chars1 = str1.chars
+  chars2 = str2.chars
+  reject_one = []
+  reject_two = []
 
-  str1.chars.each do |letter|
-    if letters_two.include?(letter) == false
-      rejected_letters << letter
-    elsif letters_two.include?(letter) && letters_one.count(letter) > 1
-      rejected_letters << letter
+  chars2.each do |char|
+    if chars2.count(char) == 1
+      reject_two << char if chars1.include?(char) == false
+    elsif chars2.count(char) >= 2
+      reject_two << char
     end
   end
 
-  letters_one = str1.chars
-  str2.chars.each do |letter|
-    if letters_one.include?(letter) == false
-      rejected_letters << letter
-    elsif letters_one.include?(letter) && letters_two.count(letter) > 1
-      rejected_letters << letter
-      letters_two.delete(letter)
+  chars1.each do |char|
+    if chars1.count(char) == 1
+      reject_one << char if chars2.include?(char) == false
+    elsif chars1.count(char) >= 2
+      reject_one << char
     end
   end
 
-  rejected_letters.count
+  p reject_one.uniq
+  p reject_two
 end
 
-p anagram_difference("aab", "a")
+p anagram_difference('codewars', 'hackerrank')

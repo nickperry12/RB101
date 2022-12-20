@@ -8,49 +8,60 @@ the non-alphabetic characters replaced by spaces. If one or more non-alphabetic
 characters occur in a row, you should only have one space in the result (the
 result should never have consecutive spaces).
 
-Examples:
-
-cleanup("---what's my +*& line?") == ' what s my line '
-
 P:
 
+Create a method that takes a string and replaces all non-alphabetical characters
+with spaces. All consecutive symbols are replaced with a single space.
+
 Explicit Rules:
-- given a string,  remove all non-alphabetic characters (e.g. ', *, - )
-- replace all non-alpha characters with a spaces
-  - only one space per character, if there are two consecutive characters, keep it one space
+
+- must remove all non-alphabetical characters and replace with a single space
+- all words are lower-cased
 
 Implicit Rules:
-- 
+
+- none to be identified
+
+D: 
 
 Input: String
 Output: String
 
-Algorithm:
+Possible methods: `String#gsub`
 
-/* Given a string */
+Examples:
 
-- initialize a variable ALPHABET and assign a collection to it, consisting of each single letter in the alphabet
+cleanup("---what's my +*& line?") == ' what s my line '
 
-- take string input, split into separate words
-- iterate through it and replace all non-alphabetic characters with a single space (no consecutive space)
-- join the words back into a string
-- output the result
+Algo:
+
+/* given a string */
+
+1) iterate through the string
+2) identify all non-alphabetical characters
+3) replace them with a space
+
 =end
 
-ALPHABET = ('a'..'z').to_a
+def cleanup(str)
+  str.gsub(/[^a-z0-9]/i, ' ').squeeze(' ')
+end
 
-def cleanup(string)
-  alphabetic_chars = []
-  string.chars.each do |char|
-    if ALPHABET.include?(char)
-      alphabetic_chars << char
+def cleanup_two(str)
+  alphabet = ('a'..'z').to_a
+  new_string = []
+
+  str.chars.each do |char|
+    if alphabet.include?(char)
+      new_string << char
     else
-      alphabetic_chars << (' ') unless alphabetic_chars.last == (' ')
+      new_string << ' '
     end
   end
 
-  alphabetic_chars.join
+  new_string.join.squeeze(' ')
 end
 
-p cleanup("---what's my +*& line?")
+
 p cleanup("---what's my +*& line?") == ' what s my line '
+p cleanup_two("---what's my +*& line?") == ' what s my line '
