@@ -26,6 +26,7 @@ end
 # rubocop:disable Metrics/AbcSize
 def display_board(brd)
   system("clear") || system("cls")
+  current_score
   puts ""
   puts "     |     |"
   puts "  #{brd[1]}  |  #{brd[2]}  |  #{brd[3]}"
@@ -65,24 +66,26 @@ def player_move!(brd)
   brd[square] = PLAYER_MARKER
 end
 
+# rubocop:disable Metrics/AbcSize
+# rubocop:disable Metrics/CyclomaticComplexity
 def computer_move!(brd)
   threat_line = computer_detect_threat(brd)
   win_line = computer_detect_win(brd)
 
-  square = if win_line.empty? == false
-             brd.select do |k, v|
-               win_line.include?(k) && v == ' '
-             end.keys[0]
-           elsif threat_line.empty? == false
-             brd.select do |k, v|
-               threat_line.include?(k) && v == ' '
-             end.keys[0]
-           else
-             empty_squares(brd).sample
-           end
+  square = brd.select { |k, v| win_line.include?(k) && v == ' ' }.keys[0]
+
+  if threat_line.empty? == false && !square
+    square = brd.select { |k, v| threat_line.include?(k) && v == ' ' }.keys[0]
+  end
+
+  if !square
+    square = empty_squares(brd).sample
+  end
+
   brd[square] = COMPUTER_MARKER
-  binding.pry
 end
+# rubocop:enable Metrics/AbcSize
+# rubocop:enable Metrics/CyclomaticComplexity
 
 def computer_detect_threat(brd)
   WINNING_LINES.select do |line|
@@ -139,6 +142,33 @@ def output_score(player_name)
   "Ties: #{STATS[:tie]}."
 end
 
+def current_score
+  prompt "*** Current Score***".center(25)
+  prompt "Player: #{STATS[:player_wins]}, CPU: #{STATS[:cpu_wins]}, Tie: #{STATS[:tie]}"
+end
+
+def current_player(user)
+  players = [user, "Computer"]
+  first = players.sample
+  first
+end
+
+def countdown
+  prompt "Prepare yourself! Beginning the game in..."
+  prompt "5..."
+  sleep 1
+  prompt "4..."
+  sleep 1
+  prompt "3..."
+  sleep 1
+  prompt "2..."
+  sleep 1
+  prompt "1..."
+  sleep 1
+  prompt "GO!!!"
+  sleep 1
+end
+
 # username input and validation
 player_name = ""
 prompt MSG['welcome']
@@ -163,14 +193,26 @@ while in_game
   board = initialize_board
 
   # loop for player and computer moves
+  first_move = current_player(player_name)
+  prompt "#{first_move} will go first!"
+  countdown
 
-  loop do
-    display_board(board)
-    player_move!(board)
-    break if winner?(board) || board_full?(board)
-    computer_move!(board)
-    # binding.pry
-    break if winner?(board) || board_full?(board)
+  if first_move == player_name
+    loop do
+      display_board(board)
+      player_move!(board)
+      break if winner?(board) || board_full?(board)
+      computer_move!(board)
+      break if winner?(board) || board_full?(board)
+    end
+  else
+    loop do
+      computer_move!(board)
+      display_board(board)
+      break if winner?(board) || board_full?(board)
+      player_move!(board)
+      break if winner?(board) || board_full?(board)
+    end
   end
 
   display_board board
