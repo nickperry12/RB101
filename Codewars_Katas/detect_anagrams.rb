@@ -89,29 +89,20 @@ A:
 =end
 
 def anagram_difference(str1, str2)
-  chars1 = str1.chars
-  chars2 = str2.chars
-  reject_one = []
-  reject_two = []
-
-  chars2.each do |char|
-    if chars2.count(char) == 1
-      reject_two << char if chars1.include?(char) == false
-    elsif chars2.count(char) >= 2
-      reject_two << char
-    end
-  end
-
-  chars1.each do |char|
-    if chars1.count(char) == 1
-      reject_one << char if chars2.include?(char) == false
-    elsif chars1.count(char) >= 2
-      reject_one << char
-    end
-  end
-
-  p reject_one.uniq
-  p reject_two
+  p str1
+  p str2
+  dissimilar_letters = []
+  similar_letter_counter = 0
+  str1.chars.select { |item| dissimilar_letters << item if !(str2.include?(item)) }
+  str2.chars.select { |item| dissimilar_letters << item if !(str1.include?(item)) } 
+  str1 = str1.chars.delete_if { |obj| dissimilar_letters.include?(obj) }.sort
+  str2 = str2.chars.delete_if { |obj| dissimilar_letters.include?(obj) }.sort
+  str1.uniq.each_with_object(hash1 = {}) { |letter, obj| obj[letter] = str1.count(letter) }
+  str2.uniq.each_with_object(hash2 = {}) { |letter, obj| obj[letter] = str2.count(letter) }
+  arrs = hash1.values.zip(hash2.values).select { |subarr| subarr if subarr.inject(:-).abs > 0 }
+  differences = arrs.map { |subarr| subarr.inject(:-).abs }
+  similar_letters_counter = differences.inject(:+)
+  similar_letters_counter + dissimilar_letters.count
 end
 
 p anagram_difference('codewars', 'hackerrank')

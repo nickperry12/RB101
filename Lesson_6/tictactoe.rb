@@ -67,21 +67,33 @@ end
 
 def computer_move!(brd)
   threat_line = computer_detect_threat(brd)
+  win_line = computer_detect_win(brd)
 
-  square = if threat_line.empty? == false
+  square = if win_line.empty? == false
+             brd.select do |k, v|
+               win_line.include?(k) && v == ' '
+             end.keys[0]
+           elsif threat_line.empty? == false
              brd.select do |k, v|
                threat_line.include?(k) && v == ' '
-             end.keys.sample
+             end.keys[0]
            else
              empty_squares(brd).sample
            end
   brd[square] = COMPUTER_MARKER
-  # binding.pry
+  binding.pry
 end
 
 def computer_detect_threat(brd)
   WINNING_LINES.select do |line|
     brd.values_at(*line).count(PLAYER_MARKER) == 2 &&
+      brd.values_at(*line).count(' ') == 1
+  end.flatten
+end
+
+def computer_detect_win(brd)
+  WINNING_LINES.select do |line|
+    brd.values_at(*line).count(COMPUTER_MARKER) == 2 &&
       brd.values_at(*line).count(' ') == 1
   end.flatten
 end
@@ -202,6 +214,7 @@ while in_game
 
     case choice
     when 'y', 'yes'
+      STATS.each { |k, _| STATS[k] = 0 }
       prompt MSG['another_one']
       sleep 4
     when 'n', 'no'
