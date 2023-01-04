@@ -1,62 +1,71 @@
-=begin 
-Nick: 
+=begin
+Write a method that computes the difference between the square of the sum of the
+first n positive integers and the sum of the squares of the first n positive
+integers.
+
 P:
 
-Given a lowercase substring with both vowels and consonants with no
-spaces
-- return length of the longest consecutive vowel substring (e.g, codewarriors =>
-  2)
+Going to write a method that takes an integer as an argument, and computes the
+difference of the squared sum of the of the first `n` positive integers and the
+sum of the squared first `n` positive integers
 
-- We aren't trying to count each vowel, we're trying to return the longest
-  length of consecutive vowels (in the given string codewarriors, the return
-  would be 2, the longest substring of vowels would be 'io' == 2)
+Squared sum of first `n` positive integers:
+
+(n + n + n) ** 2
+
+Sum of squared first `n` positive integers
+
+(n ** 2 + n ** 2 + n ** 2)
+
+Find the result of both of these calculations and then find the difference
 
 Explicit Rules:
-- Input: a string that contains alphabetic characters
-- Output: integer representing the longest amount of vowels in the given String
+
+First operand is the squared sum of `n` positive integers
+Second operand is the sum of squared `n` positive integers
 
 Implicit Rules:
-- string doesn't contain any spaces
-- no integers in string
-- string doesn't have to be a word, just contain letterse
+
+The given integer is the end number in a range of integers used in our
+calulation
+
+E.g., given integer is 3, our range of numbers is 1, 2, 3
 
 E:
 
-solve("codewarriors") == 2
-solve('ybd') == 0
-solve('caeioucu') == 5
-solve('aaa') == 3
+sum_square_difference(3) == 22
+   # -> (1 + 2 + 3)**2 - (1**2 + 2**2 + 3**2)
+sum_square_difference(10) == 2640 sum_square_difference(1) == 0
+sum_square_difference(100) == 25164150
 
 D:
 
-A:
+Input: Integer
+Intermediate: Range
+Output: Integer
 
-create a method `solve` that takes one argument (a string)
-- create an empty collection (a hash)
-- iterate through the given string and collect any vowels
-- if a vowel is a found, add to an empty Array
-- after iterating through the string and collecting all the vowels
-    - iterate through the array
-      - add vowels to the empty hash, with a key for each vowel
-      - set the value of each key to the counted amount of each vowel
-- return the vowel with the highest value (must be an integer)
+Algo:
 
-=end 
+/* given an integer */
 
-def solve(string)
-  collected_vowels = []
-  vowels = 'aeiouAEIOU'
+1) create a range of numbers (inclusive) of 1 to given int
+2) sum the range, and then square it, assign it to variable `a`
+3) take each number in the range and square them, then find the sum assign it 
+variable `b`
+4) find the difference between `a` and `b`
+5) return the result
 
-  string.split(//).each do |letter|
-    if vowels.include?(letter)
-      collected_vowels << letter
-    end
-  end
+=end
 
-  collected_vowels.each_with_object({}) do |vowel, hash|
-    hash[vowel] = collected_vowels.count(vowel)
-  end
+def sum_square_difference(int)
+  a = (1..int).sum ** 2
+  b = (1..int).to_a.map { |num| num ** 2 }.sum
+  a - b
 end
 
 
-p solve("codewarriors")
+p sum_square_difference(3) == 22
+   # -> (1 + 2 + 3)**2 - (1**2 + 2**2 + 3**2)
+p sum_square_difference(10) == 2640 
+p sum_square_difference(1) == 0
+p sum_square_difference(100) == 25164150

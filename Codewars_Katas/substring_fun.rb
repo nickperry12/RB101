@@ -56,6 +56,7 @@ p nth_char(['Chad', 'Morocco', 'India', 'Algeria', 'Botswana', 'Bahamas', 'Ecuad
 
 =end
 
+
 def nth_char(arr_strings)
   word = ""
   if arr_strings.empty?
