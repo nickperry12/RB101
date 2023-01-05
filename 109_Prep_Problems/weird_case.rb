@@ -56,26 +56,19 @@ A:
 
 def to_weird_case(string)
   words = string.split
-  counter = 2
 
-  until counter == words.size - 1
-    words[counter].chars.map!.with_index do |char, idx|
-      if idx.odd?
-        char.upcase!
-      else
-        char
-      end
-    end
-    counter += 3
+  (2..words.size - 1).step(3) do |x|
+    (1..words[x].size - 1).step(2) { |n| words[x][n] = words[x][n].upcase! }
   end
+
+  words.join(' ')
 end
 
-p to_weird_case('Lorem Ipsum is simply dummy text of the printing')
 
-# p to_weird_case('Lorem Ipsum is simply dummy text of the printing') ==
-#                 'Lorem Ipsum iS simply dummy tExT of the pRiNtInG'
-# p to_weird_case('It is a long established fact that a reader will be distracted') ==
-#   'It is a long established fAcT that a rEaDeR will be dIsTrAcTeD'
-# p to_weird_case('aaA bB c') == 'aaA bB c'
-# p to_weird_case('Miss Mary Poppins word is supercalifragilisticexpialidocious') ==
-#   'Miss Mary POpPiNs word is sUpErCaLiFrAgIlIsTiCeXpIaLiDoCiOuS'
+p to_weird_case('Lorem Ipsum is simply dummy text of the printing') ==
+                'Lorem Ipsum iS simply dummy tExT of the pRiNtInG'
+p to_weird_case('It is a long established fact that a reader will be distracted') ==
+  'It is a long established fAcT that a rEaDeR will be dIsTrAcTeD'
+p to_weird_case('aaA bB c') == 'aaA bB c'
+p to_weird_case('Miss Mary Poppins word is supercalifragilisticexpialidocious') ==
+  'Miss Mary POpPiNs word is sUpErCaLiFrAgIlIsTiCeXpIaLiDoCiOuS'
