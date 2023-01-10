@@ -1,5 +1,4 @@
 require 'yaml'
-require 'pry'
 
 MSG = YAML.load_file('tictactoemsg.yml')
 INITIAL_MARKER = ' '
@@ -76,15 +75,13 @@ end
 
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/CyclomaticComplexity
-def computer_move!(brd, first)
+# rubocop:disable Metrics/PerceivedComplexity
+def computer_move!(brd, player)
   threat_line = computer_detect_threat(brd)
   win_line = computer_detect_win(brd)
-
   square = nil
 
-  if first == "Computer" && !square
-    square = 5  unless brd[5] == 'O' || brd[5] == PLAYER_MARKER
-  end
+  square = 5 if player == "Computer" && !square && brd[5] == ' '
 
   if !square
     square = brd.select { |k, v| win_line.include?(k) && v == ' ' }.keys[0]
@@ -102,6 +99,7 @@ def computer_move!(brd, first)
 end
 # rubocop:enable Metrics/AbcSize
 # rubocop:enable Metrics/CyclomaticComplexity
+# rubocop:enable Metrics/PerceivedComplexity
 
 def computer_detect_threat(brd)
   WINNING_LINES.select do |line|
@@ -115,6 +113,20 @@ def computer_detect_win(brd)
     brd.values_at(*line).count(COMPUTER_MARKER) == 2 &&
       brd.values_at(*line).count(' ') == 1
   end.flatten
+end
+
+def who_goes_first(user)
+  players = [user, "Computer"]
+  players.sample
+end
+
+def alternate_player(current_player, player_name)
+  case current_player
+  when "Computer"
+    player_name
+  when player_name
+    "Computer"
+  end
 end
 
 def board_full?(brd)
@@ -160,23 +172,9 @@ end
 
 def current_score
   prompt "*** Current Score***".center(25)
-  prompt "Player: #{STATS[:player_wins]}, CPU: #{STATS[:cpu_wins]}, Tie: #{STATS[:tie]}"
+  prompt "Player: #{STATS[:player_wins]}, CPU: #{STATS[:cpu_wins]},\
+Tie: #{STATS[:tie]}"
 end
-
-def who_goes_first(user)
-  players = [user, "Computer"]
-  first = players.sample
-  first
-end
-
-def alternate_player(current_player, player_name)
-  if current_player == "Computer"
-    player_name
-  elsif current_player == player_name
-    "Computer"
-  end
-end
-
 
 def countdown
   prompt "Prepare yourself! Beginning the game in..."
@@ -226,7 +224,6 @@ while in_game
     display_board(board)
     place_piece!(board, current_player)
     current_player = alternate_player(current_player, player_name)
-    #binding.pry
     break if winner?(board) || board_full?(board)
   end
 
