@@ -16,11 +16,13 @@ WINNING_LINES = [
 ]
 STATS = { player_wins: 0, cpu_wins: 0, tie: 0 }
 
-# methods for program
+# method to style string outputs
 
 def prompt(str)
   puts "=> #{str}"
 end
+
+# methods for the display board
 
 # rubocop:disable Metrics/AbcSize
 def display_board(brd)
@@ -48,9 +50,13 @@ def initialize_board
   new_board
 end
 
+# this selects all empty squares available for piece placement
+
 def empty_squares(brd)
   brd.keys.select { |num| brd[num] == INITIAL_MARKER }
 end
+
+# methods handling computer and player moves, altnerating current player
 
 def place_piece!(brd, current_player)
   if current_player == "Computer"
@@ -101,6 +107,22 @@ end
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/PerceivedComplexity
 
+def who_goes_first(user)
+  players = [user, "Computer"]
+  players.sample
+end
+
+def alternate_player(current_player, player_name)
+  case current_player
+  when "Computer"
+    player_name
+  when player_name
+    "Computer"
+  end
+end
+
+# methods for computer AI, detects win and threat lines
+
 def computer_detect_threat(brd)
   WINNING_LINES.select do |line|
     brd.values_at(*line).count(PLAYER_MARKER) == 2 &&
@@ -115,19 +137,7 @@ def computer_detect_win(brd)
   end.flatten
 end
 
-def who_goes_first(user)
-  players = [user, "Computer"]
-  players.sample
-end
-
-def alternate_player(current_player, player_name)
-  case current_player
-  when "Computer"
-    player_name
-  when player_name
-    "Computer"
-  end
-end
+# methods for detecting winner/tie game
 
 def board_full?(brd)
   empty_squares(brd).empty?
@@ -164,6 +174,8 @@ def joinor(array, delimiter = ', ', word = 'or ')
   end
 end
 
+# methods to output score with the board and after each game
+
 def output_score(player_name)
   prompt "The score is #{player_name}: #{STATS[:player_wins]}, "\
   "Computer: #{STATS[:cpu_wins]}, "\
@@ -173,8 +185,10 @@ end
 def current_score
   prompt "*** Current Score***".center(25)
   prompt "Player: #{STATS[:player_wins]}, CPU: #{STATS[:cpu_wins]},\
-Tie: #{STATS[:tie]}"
+ Tie: #{STATS[:tie]}"
 end
+
+# countdown before the start of each game
 
 def countdown
   prompt "Prepare yourself! Beginning the game in..."
@@ -193,6 +207,7 @@ def countdown
 end
 
 # username input and validation
+
 player_name = ""
 prompt MSG['welcome']
 loop do
@@ -215,11 +230,11 @@ in_game = true
 while in_game
   board = initialize_board
 
-  # loop for player and computer moves
   current_player = who_goes_first(player_name)
   prompt "#{current_player} will go first!"
   countdown
 
+  # loop for player and computer moves
   loop do
     display_board(board)
     place_piece!(board, current_player)
@@ -229,7 +244,7 @@ while in_game
 
   display_board board
 
-  # message or tie declaration
+  # win message or tie declaration
 
   if winner? board
     prompt "#{player_name} " + MSG['player'] if detect_winner(board) == "Player"
