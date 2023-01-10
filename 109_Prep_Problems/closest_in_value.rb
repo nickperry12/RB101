@@ -56,4 +56,21 @@ A:
 2. grab two numbers, starting at the first index, and the index next to it
 3. find the pair that has the smallest difference and assign it to smallest nums
 4. iterate through the original array of numbers
-5. select the two numbers that are equal our smallest nums variable 
+5. select the two numbers that are equal to our smallest nums variable 
+
+=end
+
+def closest_numbers(arr)
+  sorted_nums = arr.sort
+  smallest_nums = []
+  sorted_nums.each_with_index do |i, idx|
+    break if sorted_nums[idx+1] == nil
+    smallest_nums << sorted_nums[idx+1] - sorted_nums[idx]
+  end
+end
+
+p closest_numbers([5, 25, 15, 11, 20])
+
+# p closest_numbers([5, 25, 15, 11, 20]) == [15, 11]
+# p closest_numbers([19, 25, 32, 4, 27, 16]) == [25, 27]
+# p closest_numbers([12, 7, 17]) == [12, 7]

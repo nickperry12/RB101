@@ -53,6 +53,14 @@ def empty_squares(brd)
   brd.keys.select { |num| brd[num] == INITIAL_MARKER }
 end
 
+def place_piece!(brd, current_player)
+  if current_player == "Computer"
+    computer_move!(brd, current_player)
+  else
+    player_move!(brd)
+  end
+end
+
 def player_move!(brd)
   square = ""
   loop do
@@ -68,11 +76,19 @@ end
 
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/CyclomaticComplexity
-def computer_move!(brd)
+def computer_move!(brd, first)
   threat_line = computer_detect_threat(brd)
   win_line = computer_detect_win(brd)
 
-  square = brd.select { |k, v| win_line.include?(k) && v == ' ' }.keys[0]
+  square = nil
+
+  if first == "Computer" && !square
+    square = 5  unless brd[5] == 'O' || brd[5] == PLAYER_MARKER
+  end
+
+  if !square
+    square = brd.select { |k, v| win_line.include?(k) && v == ' ' }.keys[0]
+  end
 
   if threat_line.empty? == false && !square
     square = brd.select { |k, v| threat_line.include?(k) && v == ' ' }.keys[0]
@@ -147,11 +163,20 @@ def current_score
   prompt "Player: #{STATS[:player_wins]}, CPU: #{STATS[:cpu_wins]}, Tie: #{STATS[:tie]}"
 end
 
-def current_player(user)
+def who_goes_first(user)
   players = [user, "Computer"]
   first = players.sample
   first
 end
+
+def alternate_player(current_player, player_name)
+  if current_player == "Computer"
+    player_name
+  elsif current_player == player_name
+    "Computer"
+  end
+end
+
 
 def countdown
   prompt "Prepare yourself! Beginning the game in..."
@@ -183,7 +208,7 @@ end
 
 prompt "Welcome #{player_name}!"
 prompt MSG['rules']
-sleep 10
+sleep 12
 
 in_game = true
 
@@ -193,26 +218,16 @@ while in_game
   board = initialize_board
 
   # loop for player and computer moves
-  first_move = current_player(player_name)
-  prompt "#{first_move} will go first!"
+  current_player = who_goes_first(player_name)
+  prompt "#{current_player} will go first!"
   countdown
 
-  if first_move == player_name
-    loop do
-      display_board(board)
-      player_move!(board)
-      break if winner?(board) || board_full?(board)
-      computer_move!(board)
-      break if winner?(board) || board_full?(board)
-    end
-  else
-    loop do
-      computer_move!(board)
-      display_board(board)
-      break if winner?(board) || board_full?(board)
-      player_move!(board)
-      break if winner?(board) || board_full?(board)
-    end
+  loop do
+    display_board(board)
+    place_piece!(board, current_player)
+    current_player = alternate_player(current_player, player_name)
+    #binding.pry
+    break if winner?(board) || board_full?(board)
   end
 
   display_board board
