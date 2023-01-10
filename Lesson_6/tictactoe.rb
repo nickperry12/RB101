@@ -56,7 +56,7 @@ def empty_squares(brd)
   brd.keys.select { |num| brd[num] == INITIAL_MARKER }
 end
 
-# methods handling computer and player moves, altnerating current player
+# methods handling computer and player moves, alternating current player
 
 def place_piece!(brd, current_player)
   if current_player == "Computer"
@@ -221,7 +221,7 @@ end
 
 prompt "Welcome #{player_name}!"
 prompt MSG['rules']
-sleep 12
+sleep 15
 
 in_game = true
 
