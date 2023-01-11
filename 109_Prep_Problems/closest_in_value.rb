@@ -57,3 +57,14 @@ A:
 3. find the pair that has the smallest difference and assign it to smallest nums
 4. iterate through the original array of numbers
 5. select the two numbers that are equal our smallest nums variable 
+
+=end
+
+def closest_numbers(arr)
+  combos = arr.sort.each_cons(2).to_a.min_by { |x, y| y - x }
+  arr.select { |i| combos.include?(i) }
+end
+
+p closest_numbers([5, 25, 15, 11, 20]) == [15, 11]
+p closest_numbers([19, 25, 32, 4, 27, 16]) == [25, 27]
+p closest_numbers([12, 7, 17]) == [12, 7]
