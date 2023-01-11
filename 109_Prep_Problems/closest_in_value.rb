@@ -56,16 +56,11 @@ A:
 2. grab two numbers, starting at the first index, and the index next to it
 3. find the pair that has the smallest difference and assign it to smallest nums
 4. iterate through the original array of numbers
-<<<<<<< HEAD
 5. select the two numbers that are equal our smallest nums variable 
-=======
-5. select the two numbers that are equal to our smallest nums variable 
->>>>>>> 3b28c1c7c217f189ec032b110e0dd87e711e0b2a
 
 =end
 
 def closest_numbers(arr)
-<<<<<<< HEAD
   combos = arr.sort.each_cons(2).to_a.min_by { |x, y| y - x }
   arr.select { |i| combos.include?(i) }
 end
@@ -73,18 +68,3 @@ end
 p closest_numbers([5, 25, 15, 11, 20]) == [15, 11]
 p closest_numbers([19, 25, 32, 4, 27, 16]) == [25, 27]
 p closest_numbers([12, 7, 17]) == [12, 7]
-=======
-  sorted_nums = arr.sort
-  smallest_nums = []
-  sorted_nums.each_with_index do |i, idx|
-    break if sorted_nums[idx+1] == nil
-    smallest_nums << sorted_nums[idx+1] - sorted_nums[idx]
-  end
-end
-
-p closest_numbers([5, 25, 15, 11, 20])
-
-# p closest_numbers([5, 25, 15, 11, 20]) == [15, 11]
-# p closest_numbers([19, 25, 32, 4, 27, 16]) == [25, 27]
-# p closest_numbers([12, 7, 17]) == [12, 7]
->>>>>>> 3b28c1c7c217f189ec032b110e0dd87e711e0b2a
