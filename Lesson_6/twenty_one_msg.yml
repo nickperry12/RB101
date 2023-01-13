@@ -1,0 +1,5 @@
+player_turn: "It's your turn! Would you like to hit or stay? Please enter '[h]it' or '[s]tay'."
+invalid_choice: "That is not a valid option! Please enter '[h]it' or '[s]tay'."
+hit: "You chose to hit! Here is your card."
+player_bust: "Oh no! You bust! Better luck next time."
+dealer_bust: "The dealer busts! You win! Congratulations!"

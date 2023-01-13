@@ -58,13 +58,16 @@ def letter_count(string)
   chars = string.chars
   chars.each_with_object(counted_letters = {}) do |char, hash|
     if char == char.downcase
-      hash[char.to_s] = chars.count(char)
+      hash[char.to_sym] = chars.count(char)
     end
   end
 end
 
+p letter_count('codewars')
+p letter_count('activity')
+p letter_count('arithmetics')
 
 
-p letter_count('codewars') #== {:a=>1, :c=>1, :d=>1, :e=>1, :o=>1, :r=>1, :s=>1, :w=>1}
-p letter_count('activity') #== {:a=>1, :c=>1, :i=>2, :t=>2, :v=>1, :y=>1}
-p letter_count('arithmetics') #== {:a=>1, :c=>1, :e=>1, :h=>1, :i=>2, :m=>1, :r=>1, :s=>1, :t=>2}
+p letter_count('codewars') == {:a=>1, :c=>1, :d=>1, :e=>1, :o=>1, :r=>1, :s=>1, :w=>1}
+p letter_count('activity') == {:a=>1, :c=>1, :i=>2, :t=>2, :v=>1, :y=>1}
+p letter_count('arithmetics') == {:a=>1, :c=>1, :e=>1, :h=>1, :i=>2, :m=>1, :r=>1, :s=>1, :t=>2}

@@ -59,7 +59,7 @@ A:
 3a. if the size of the array is even, select the two middle chars
 3b. if the size of the array is odd, select one middle char
 3c. to check if the chars in the middle, divide the size of the array by 2
-4. return the selected chars in strin format
+4. return the selected chars in string format
 
 
 =end
