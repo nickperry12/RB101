@@ -47,9 +47,9 @@ A:
 
 =end
 
-# def merge(arr, arr_two)
-#   arr.concat(arr_two).uniq
-# end
+def merge(arr, arr_two)
+  arr.concat(arr_two).uniq
+end
 
 def merge(arr, arr_two)
   merged = []
