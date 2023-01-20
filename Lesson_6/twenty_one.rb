@@ -71,7 +71,7 @@ BLACKJACK = 21
 
 DEALER_TARGET = 17
 
-FILE = File.open('twenty_one_rules.txt')  
+FILE = File.open('twenty_one_rules.txt')
 
 # rules output
 
@@ -91,7 +91,6 @@ end
 # player turn and dealer turn
 
 # rubocop:disable Metrics/AbcSize
-# rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/MethodLength
 def player_turn!(hand, deck)
   choice = ''
@@ -119,7 +118,6 @@ def player_turn!(hand, deck)
   end
 end
 # rubocop:enable Metrics/AbcSize
-# rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/MethodLength
 
 # rubocop:disable Metrics/AbcSize
@@ -161,9 +159,7 @@ def blackjack?(hand)
   card_total(hand) == BLACKJACK
 end
 
-# rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/MethodLength
-# rubocop:disable Metrics/PerceivedComplexity
 def find_result(player_hand, dealer_hand)
   player_total = card_total(player_hand)
   dealer_total = card_total(dealer_hand)
@@ -184,9 +180,7 @@ def find_result(player_hand, dealer_hand)
     :tie
   end
 end
-# rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/MethodLength
-# rubocop:enable Metrics/PerceivedComplexity
 
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/MethodLength
@@ -305,6 +299,7 @@ end
 
 # stats output and end round stats update
 
+# rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/CyclomaticComplexity
 # rubocop:disable Metrics/MethodLength
 def update_stats(player_hand, dealer_hand)
@@ -333,6 +328,7 @@ def update_stats(player_hand, dealer_hand)
 end
 # rubocop:enable Metrics/CyclomaticComplexity
 # rubocop:enable Metrics/MethodLength
+# rubocop:enable Metrics/AbcSize
 
 def show_stats(player)
   prompt "The current stats are:\n
