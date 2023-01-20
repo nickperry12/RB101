@@ -60,7 +60,7 @@ def featured(num)
       return current_num
       break
     elsif current_num > 1_023_456_987
-      puts "There is no possible number that fulfills those requirements"
+      "There is no possible number that fulfills those requirements"
       break
     else
       current_num += 1
