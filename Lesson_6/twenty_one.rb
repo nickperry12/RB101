@@ -1,4 +1,5 @@
 require 'yaml'
+require 'pry'
 
 MSG = YAML.load_file('twenty_one_msg.yml')
 
@@ -88,37 +89,52 @@ def prompt(string)
   puts "=> #{string}"
 end
 
+# methods for card announcement
+
+def initial_card_announce(dealer_hand, player_hand)
+  prompt "You have #{player_hand[0][1]} of #{player_hand[0][0]} and the\
+ #{player_hand[1][1]} of #{player_hand[1][0]}."
+  prompt "The dealer has #{dealer_hand[0][1]} of #{dealer_hand[0][0]} and one\
+ facedown card"
+  prompt "Your total is #{card_total(player_hand)}!"
+end
+
+def card_announcement(player_hand)
+  prompt "You were dealt the #{player_hand.last[1]} of #{player_hand.last[0]}."
+  prompt "Your total is #{card_total(player_hand)}!"
+end
+
 # player turn and dealer turn
 
-# rubocop:disable Metrics/AbcSize
-# rubocop:disable Metrics/MethodLength
-def player_turn!(hand, deck)
+def player_turn!(player_hand, dealer_hand, deck)
   choice = ''
-  prompt "You have the #{hand[0][1]} of #{hand[0][0]} and the #{hand[1][1]}\
- of #{hand[1][0]}."
-  prompt "The dealer has #{hand[0][1]} of #{hand[0][0]} and one facedown card"
-  prompt "Your total is #{card_total(hand)}!"
+  initial_card_announce(dealer_hand, player_hand)
 
   loop do
-    break if busted?(hand) || blackjack?(hand)
-    prompt MSG['player_turn']
-    choice = gets.downcase.chomp
-    case choice
-    when 'hit', 'h'
-      prompt MSG['hit']
-      deal_card(deck, hand)
-      prompt "You were dealt the #{hand.last[1]} of #{hand.last[0]}."
-      prompt "Your total is #{card_total(hand)}!" unless busted?(hand) ||
-                                                         blackjack?(hand)
-    when 'stay', 's'
+    choice = player_choice!(player_hand, deck, choice)
+    if busted?(player_hand) || blackjack?(player_hand) || choice == "stay"
       break
-    else
-      prompt MSG['invalid_choice']
     end
   end
 end
-# rubocop:enable Metrics/AbcSize
-# rubocop:enable Metrics/MethodLength
+
+# makes the player choice to hit or stay, passed into player turn
+
+def player_choice!(player_hand, deck, choice)
+  prompt MSG['player_turn']
+  choice = gets.downcase.chomp
+  case choice
+  when 'hit', 'h'
+    prompt MSG['hit']
+    deal_card(deck, player_hand)
+    card_announcement(player_hand) unless busted?(player_hand) ||
+                                          blackjack?(player_hand)
+  when 'stay', 's'
+    return "stay"
+  else
+    prompt MSG['invalid_choice']
+  end
+end
 
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/MethodLength
@@ -128,7 +144,7 @@ def dealer_turn!(hand, deck)
  of #{hand[1][0]}!"
   loop do
     if card_total(hand) >= DEALER_TARGET && card_total(hand) < BLACKJACK
-      prompt "The dealer's total is' #{card_total(hand)}."
+      prompt "The dealer's total is #{card_total(hand)}."
       sleep 2
       prompt "The dealer stays!"
       break
@@ -216,6 +232,7 @@ end
 # for the first initial dealing of 2 cards
 # dealt alternating to simulate a real life game of blackjack
 # where each card is dealt in an alternating fashion
+
 def initial_deal(player_cards, dealer_cards, deck)
   player_cards << deck.pop
   dealer_cards << deck.pop
@@ -377,7 +394,7 @@ while in_game
 
   show_stats(player)
   initial_deal(player_hand, dealer_hand, deck)
-  player_turn!(player_hand, deck)
+  player_turn!(player_hand, dealer_hand, deck)
   dealer_turn!(dealer_hand, deck) unless busted?(player_hand) ||
                                          blackjack?(player_hand)
   compare_total(player_hand, dealer_hand)
