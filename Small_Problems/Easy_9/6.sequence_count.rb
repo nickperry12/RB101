@@ -2,7 +2,7 @@
 
 ---------------- Problem
 
-p Sequence Count
+Sequence Count
 
 Create a method that takes two integers as arguments. The first argument is a
 count, and the second is the first number of a p sequence that your method will
@@ -23,7 +23,9 @@ will be our starting number, and the number we will increase each element by.
 
 
 
-Input: 2 Integers Output: Array
+Input: 2 Integers
+
+Output: Array
 
 
 
@@ -48,8 +50,9 @@ Mental Model:
 
 ---------------- Examples
 
-p sequence(5, 1) == [1, 2, 3, 4, 5] p sequence(4, -7) == [-7, -14, -21, -28] p
-sequence(3, 0) == [0, 0, 0] p sequence(0, 1000000) == []
+p sequence(5, 1) == [1, 2, 3, 4, 5] p sequence(4, -7) == [-7, -14, -21, -28]
+p sequence(3, 0) == [0, 0, 0]
+p sequence(0, 1000000) == []
 
 
 
@@ -111,7 +114,19 @@ def sequence(count, multiple)
   result
 end 
 
-p sequence(5, 1) == [1, 2, 3, 4, 5]
-p sequence(4, -7)== [-7, -14, -21, -28]
-p sequence(3, 0) == [0, 0, 0]
-p sequence(0, 1000000) == []
+def sequence(count, multiple)
+  a = []
+  if multiple == 0
+    count.times { |_| a.push(multiple += multiple)}
+    a
+  elsif count == 0
+    []
+  else
+    (multiple..multiple * count).step(multiple).to_a
+  end
+end
+
+p sequence(5, 1) #== [1, 2, 3, 4, 5]
+p sequence(4, -7)#== [-7, -14, -21, -28]
+p sequence(3, 0) #== [0, 0, 0]
+p sequence(0, 1000000) #== []

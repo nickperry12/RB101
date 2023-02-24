@@ -40,9 +40,9 @@ c = 5
 
 =begin
 
-All 3 local variables here have been reassigned to point to the Integer `5`,
-however, they no longer point to the same object, they will just have the same
-value.
+All 3 local variables have been reassigned to point to the Integer `5`. Integer
+values always occupy the same space in memory, so all 3 variables will be
+pointing to the same space.
 
 =end
 
