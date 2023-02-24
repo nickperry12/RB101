@@ -1,10 +1,13 @@
 def fix(value)
-  value = value.upcase!
+  value.upcase!
   value.concat('!')
 end
 
-p s = 'hello'
-p t = fix(s)
+s = 'hello'
+t = fix(s)
+
+p s
+p t
 
 =begin
 

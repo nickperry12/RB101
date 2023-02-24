@@ -2,7 +2,10 @@
 
 Swap Case
 
-Write a method that takes a string as an argument and returns a new string in which every uppercase letter is replaced by its lowercase version, and every lowercase letter by its uppercase version. All other characters should be unchanged.
+Write a method that takes a string as an argument and returns a new string in
+which every uppercase letter is replaced by its lowercase version, and every
+lowercase letter by its uppercase version. All other characters should be
+unchanged.
 
 You may not use String#swapcase; write your own version of this method.
 
@@ -10,10 +13,11 @@ P:
 
 Restate the problem:
 
-Create a method that takes a string for an argument, and returns a new string where the characters have their case swapped, e.g., if its lowercase, swap it to uppercase and vice versa. 
+Create a method that takes a string for an argument, and returns a new string
+where the characters have their case swapped, e.g., if its lowercase, swap it to
+uppercase and vice versa. 
 
-Input: String
-Output: New String
+Input: String Output: New String
 
 Explicit Rules:
 - swap the case of all alphabetical characters
@@ -25,8 +29,8 @@ Implicit Rules:
 
 Example:
 
-swapcase('CamelCase') == 'cAMELcASE'
-swapcase('Tonight on XYZ-TV') == 'tONIGHT ON xyz-tv'
+swapcase('CamelCase') == 'cAMELcASE' swapcase('Tonight on XYZ-TV') == 'tONIGHT
+ON xyz-tv'
 
 D:
 
@@ -40,7 +44,8 @@ A:
 1. initialize `words` and split the string and store each word into it
 2. iterate over each word
 3. for each word, iterate over the characters
-4. if the char is an alphabetical char, swap the case, if not, leave it unchanged
+4. if the char is an alphabetical char, swap the case, if not, leave it
+   unchanged
 5. join the chars together
 6. repeat for each word
 7. join the words together and separate each one with a space
