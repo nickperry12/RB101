@@ -3,6 +3,10 @@
 
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> e95c6b36e8744d690879778fa82de9c22d48eac8
 Restate the problem:
 
 
@@ -24,7 +28,11 @@ Implicit Rules:
 
 
 
+<<<<<<< HEAD
+Modelling:
+=======
 Modelling: 
+>>>>>>> e95c6b36e8744d690879778fa82de9c22d48eac8
 
 
 
@@ -54,4 +62,9 @@ Modelling:
 
 
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> e95c6b36e8744d690879778fa82de9c22d48eac8
 =end

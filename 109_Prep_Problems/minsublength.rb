@@ -13,7 +13,8 @@ Create a method that takes an array of positive integers as argument1 and a
 single positive integer as argument2. Find subarrays that have a sum >= to the
 2nd argument. Return the length of the smallest of those subarrays.
 
-Input: Array of positive integers Output: A single integer
+Input: Array of positive integers 
+Output: A single integer
 
 Rules:
 - We can have a subarray of a single digit
@@ -22,7 +23,8 @@ Rules:
 
 ---------------- Modelling
 
-[1, 11, 100, 1, 0, 200, 3, 2, 1, 250], 280 == 4 [250, 200] ... ==> minimal
+[1, 11, 100, 1, 0, 200, 3, 2, 1, 250], 280 == 4 
+[250, 200] ... ==> minimal
 length is 2
 
 ---------------- Data Structures
@@ -35,9 +37,10 @@ length is 2
 Initialize variable `result` to an empty array
 
 Create helper method Iterate through the given array and find all the contiguous
-  subarrays - Iterate through the given array from the first index to the last -
-    Iterate through the given array (again) from the current index to the last -
-      Slice the given array from the outer index to the inner index - Add that
+  subarrays
+  - Iterate through the given array from the first index to the last
+    - Iterate through the given array (again) from the current index to the last
+      - Slice the given array from the outer index to the inner index - Add that
         slice to `result`
 
 Reassign result to the same array but with only the subarrays >= argument2

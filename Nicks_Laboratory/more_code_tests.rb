@@ -1,70 +1,134 @@
-# 7 kyu
-
-# Return substring instance count
-# Complete the solution so that it returns the number of times the search_text is found within the full_text.
-
-# # Usage example:
-# solution('aa_bb_cc_dd_bb_e', 'bb') # should return 2 since bb shows up twice
-# solution('aaabbbcccc', 'bbb') # should return 1
-
-# p solution('abcdeb','b') == 2
-# p solution('abcdeb', 'a') == 1
-# p solution('abbc', 'bb') == 1
-
 =begin
 
-We want to create a method that takes two arguments, both strings, and should return the number of occurences of that string. The first argument is the string, the second is the string occurnces we're trying to find and return the count of. For example, given the string 'abcdeb', find the occurces of 'b'. Your method should return 2. 
-
-Notes:
-
-- We don't want to split the string, as in some instances we're looking to match multiple character strings and find the count, not just a single letter
-
-- What if we tried doing this without using the scan method? Could we use `#match?` and count the occurnces of of the returned `true` value?
-
-Rules:
-
-- Ignore punctuation or underscores
-
-D:
-
-Input: String
-Output: Integer
-
-Within our method we can use regex to find the occurences.
-
-Algo for second solution:
-- initialize a `counter` variable and set it to 0
-- iterate through the first string and check if the second string matches any of the single or combination of characters in the first string
-- if there is a match, increment the `counte`r by 1
-- stop iterating after iterating through the first string and all possible combinations of the characters within it
-- return `counter`
-
-
-Algo (High lvl):
-given two strings
-- find all occurrences of the second string in the first String
-- store each occurence in an Array
-- 
-
-
+Given 2 strings, find out if there is a substring that appears in both strings. Return true if you find a substring that appears in both strings, or false if not. Only consider substrings that are longer than one letter long. 
 
 =end
 
-# def solution(str1, str2)
-#   str1.each do |chars|
-#     if str1.match?(str2)
-#       counter += 1
-#     end
-#   end
-# end
+# p substr_test('Something', 'Fun') == false 
+# p substr_test('Something', 'Home') == true
+# p substr_test('Something', '') == false
+# p substr_test('', 'Something') == false
+# p substr_test('Banana', 'banana') == true
+# p substr_test('test', 'lllt') == false
+# p substr_test('', '') == false
+# p substr_test('1234567', '541256') == true
+# p substr_test('supercalifragilisticexpialidocious', 'SoundOfItIsAtrociou') == true
 
-def solution(str1, str2)
-  str1.scan(str2).count
+=begin
+---------------- Problem
+Given 2 strings, find out if there is a substring that appears in both strings. Return true if you find a substring that appears in both strings, or false if not. Only consider substrings that are longer than one letter long. 
+
+
+
+Restate the problem:
+
+Create a method that accepts two arguments, both strings, and finds a substring that appears in both arguments. If a substring is found, the method should return true, false if not. Only search for substrings that have a size of greater than 1. 
+
+
+Input: String
+
+Output: Boolean; true or false
+
+
+
+
+Explicit Rules:
+- the substrings found must be greater than 1 character
+- substring must appear in both arguments
+
+
+
+Implicit Rules:
+- none identified
+
+
+---------------- Modelling
+
+Given Strings: '1234567', '541256'
+
+Substring found in both: '56'
+Length > 1
+Should return true
+
+Given Strings: 'supercalifragilisticexpialidocious', 'SoundOfItIsAtrociou'
+Substring: ciou
+Length > 2
+Should reuturn true
+
+---------------- Examples
+
+p substr_test('Something', 'Fun') == false 
+p substr_test('Something', 'Home') == true
+p substr_test('Something', '') == false
+p substr_test('', 'Something') == false
+p substr_test('Banana', 'banana') == true
+p substr_test('test', 'lllt') == false
+p substr_test('', '') == false
+p substr_test('1234567', '541256') == true
+p substr_test('supercalifragilisticexpialidocious', 'SoundOfItIsAtrociou') == true
+
+
+
+
+---------------- Data Structures
+
+Strings
+
+
+
+---------------- Scratchboard
+
+
+
+
+
+
+---------------- Algorithm
+
+/* given two strings */
+
+Initialize `substrings` to an empty collection
+
+Starting at index 0 of the first string
+  - Starting at index 1 of the given string
+    - Create a substring containing the characters from index 0 up to the current index
+      - Append the created substring to our `substrings` collection
+  - Repeat this until all we finish iterating on both levels
+
+Iterate through the `substrings` collection
+  - If any of the substrings within this collection are included in our second argument
+    - Return true
+  - Return false if none are found
+
+=end
+
+def substr_test(str1, str2)
+  substrings = []
+
+  0.upto(str1.size - 1) do |i|
+    i.upto(str1.size - 1) do |ii|
+      substrings << str1[i..ii]
+    end
+  end
+
+  substrings = substrings.select { |substr| substr.size >= 2}
+
+  substrings.each do |substring|
+    return true if str2.include?(substring)
+  end
+
+  false
 end
 
-p solution('aa_bb_cc_dd_bb_e', 'bb') == 2
-p solution('aaabbbcccc', 'bbb') == 1
-p solution('abcdeb','b') == 2
-p solution('abcdeb', 'a') == 1
-p solution('abbc', 'bb') == 1
-p solution('abbada', 'z') == 0
+
+
+
+p substr_test('Something', 'Fun') == false 
+p substr_test('Something', 'Home') == true
+p substr_test('Something', '') == false
+p substr_test('', 'Something') == false
+p substr_test('Banana', 'banana') == true
+p substr_test('test', 'lllt') == false
+p substr_test('', '') == false
+p substr_test('1234567', '541256') == true
+p substr_test('supercalifragilisticexpialidocious', 'SoundOfItIsAtrociou') == true

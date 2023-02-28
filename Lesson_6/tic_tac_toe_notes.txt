@@ -30,23 +30,18 @@ don't have the player markers in them, our hash does. But we could use the
 and pass the current line into the `values_at` method like so:
 
 def computer_detect_threat(brd)
-  WINNING_LINES.each do |line|
-    if brd.values_at(*line).count(PLAYER_MARKER) == 2 && brd.values_at(*line).count(' ') == 1
-      return line
-    end
-    nil
+  threat_line = WINNING_LINES.select do |line|
+    brd.values_at(*line).count(PLAYER_MARKER) == 2 &&
+    brd.values_at(*line).count(' ') == 1
   end
 end
 
-We can use this method in our `computer_move` method
+This returns us the line that consists of two `PLAYER_MARKLER`s and one empty
+space. Now we need to figure out how we can use this to select the square from
+this nested array. 
 
-if computer_detect_threat(brd) == true
-  computer_detect_threat(brd).each do |square|
-    if square == ' '
-      brd[square] = COMPUTER_MARKER
-    end
-  end
-else
-  square = empty_squares(brd).sample
-  brd[square] = COMPUTER_MARKER
-end
+We could do:
+
+square = threat_line.index(' ')
+
+This will assign square the index number where (' ') is stored. 

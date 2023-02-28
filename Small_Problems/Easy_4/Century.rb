@@ -66,10 +66,6 @@ def century(year)
   else
     string_century + 'th'
   end
-
-  if string_century[-2] == 1
-    string_century + 'th'
-  end
 end
 
 p century(2000) == '20th'
