@@ -96,3 +96,38 @@ p duplicate_encode("(( @") == "))(("
 p duplicate_encode("CodeWarrior") == "()(((())())"
 p duplicate_encode("Success") == ")())())"
 p duplicate_encode("Supralapsarian") == ")()))()))))()("
+
+
+
+def duplicate_encode(str)
+  str = str.downcase
+  chars = str.chars
+  chars.each_with_object(charCount = Hash.new(0)) do |char, hash|
+    hash[char] += 1
+  end
+
+  chars.map! { |char| charCount[char] == 1 ? '(' : ')' }.join
+end
+
+# def duplicate_encode(str)
+#   str = str.downcase
+#   chars = str.chars
+
+#   chars.map! do |char|
+#     str.count(char) == 1 ? '(' : ')'
+#   end.join
+# end
+
+string = ''
+
+1000000.times do
+  string << ('a'..'z').to_a.sample
+end
+
+
+
+p duplicate_encode("din") == "((("
+p duplicate_encode("recede") == "()()()"
+p duplicate_encode("Success") == ")())())"
+p duplicate_encode("(( @") == "))(("
+p duplicate_encode(string)
