@@ -73,9 +73,10 @@ Return `result`
 =end
 
 def letter_count(str)
-  str.chars.each_with_object(result = Hash.new(0)) do |char, result|
-    result[char.to_sym] += 1
-  end
+    # str.chars.each_with_object(result = Hash.new(0)) do |char, result|
+    #   result[char.to_sym] += 1
+    # end
+    str.chars.map(&:to_sym).tally
 end
 
 

@@ -73,13 +73,27 @@ Convert `int` to a string, and split into an array of single digits
 
 =end
 
+# def delete_digit(int)
+#   digits = int.to_s.chars
+#   digits = digits.combination(digits.size - 1).to_a
+#   digits.map! { |subarr| subarr.join.to_i }.max
+# end
+
 def delete_digit(int)
-  digits = int.to_s.chars
-  digits = digits.combination(digits.size - 1).to_a
-  digits.map! { |subarr| subarr.join.to_i }.max
+  str = int.to_s
+  digits = []
+  idx = 0
+
+  until idx > str.size
+    nums = str.chars
+    nums.delete_at(idx)
+    digits << nums.join if nums.join.size == str.size - 1
+    idx += 1
+  end
+
+  digits.map(&:to_i).max
 end
 
-
-p delete_digit(152) == 52
-p delete_digit(1001) == 101
-p delete_digit(10) == 1
+p delete_digit(152) #== 52
+p delete_digit(1001) #== 101
+p delete_digit(10) #== 1

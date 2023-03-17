@@ -50,7 +50,6 @@ Example: step(2,4900,4919) --> nil
 
 =end
 
-
 def is_prime?(num)
   (2...num).none? { |int| num % int == 0 }
 end
@@ -69,3 +68,10 @@ def step(step, start, finish)
   return nil if result == []
   result[0]
 end
+
+
+p step(2,100,110) == [101, 103]
+p step(4,100,110) == [103, 107]
+p step(6,100,110) == [101, 107]
+p step(8,300,400) == [359, 367]
+p step(10,300,400) == [307, 317]
