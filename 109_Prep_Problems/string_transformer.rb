@@ -49,20 +49,106 @@ A:
 
 =end
 
-def solve(string)
-  words = string.split
-  words.reverse!
+# def solve(string)
+#   words = string.split
+#   words.reverse!
 
-  words.map do |word|
-    word.chars.map do |char|
-      if char == char.upcase
-        char.downcase
-      elsif char == char.downcase
-        char.upcase
-      end
-    end.join
-  end.join(' ')
+#   words.map do |word|
+#     word.chars.map do |char|
+#       if char == char.upcase
+#         char.downcase
+#       elsif char == char.downcase
+#         char.upcase
+#       end
+#     end.join
+#   end.join(' ')
 
+# end
+
+# p solve("Example Input") == "iNPUT eXAMPLE"
+
+
+=begin
+---------------- Problem
+
+Given a string, return a new string that has transformed based on the input:
+
+Change case of every character, ie. lower case to upper case, upper case to lower case.
+Reverse the order of words from the input.
+Note: You will have to handle multiple spaces, and leading/trailing spaces.
+
+You may assume the input only contain English alphabet and spaces.
+
+Restate the problem:
+
+Create a method that accepts a string for an argument, and returns the same
+string where all characters are switched from lowercase to uppercase and
+vice versa, and the order of the words is reversed.
+
+
+Input: String
+
+Output: String
+
+
+
+
+Explicit Rules:
+- switch the character case of each letter in the string
+- must maintain spaces and white spaces
+- must reverse order of words
+
+
+
+Implicit Rules:
+- none implied
+
+
+Modelling:
+
+
+
+
+---------------- Examples
+
+# p solve("Example Input") == "iNPUT eXAMPLE"
+
+---------------- Data Structures
+
+I: String
+Intermediate: Array
+Output: String
+
+
+
+---------------- Scratchboard
+
+
+
+
+
+
+---------------- Algorithm
+
+/* given a string `str` */
+
+- Initialize `words` to the collection of words and spaces in `str`
+
+- Iterate through `words`
+  - Swap the case of each letter in the current word
+  - Reverse the order of `words`
+
+- Join `words` back into a string, and return the result
+
+
+=end
+
+def solve(str)
+  words = str.split(/\b/)
+  words.map! { |word| word.swapcase }
+       .reverse!
+       .join
 end
 
-p solve("Example Input") == "iNPUT eXAMPLE"
+
+p solve("Example Input") #== "iNPUT eXAMPLE"

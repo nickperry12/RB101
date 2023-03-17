@@ -1,8 +1,5 @@
 =begin
 ---------------- Problem
-
-
-
 Restate the problem:
 
 
@@ -12,11 +9,7 @@ Input:
 
 Output:
 
-
-
-
 Explicit Rules:
-
 
 
 
@@ -37,13 +30,6 @@ Modelling:
 
 
 ---------------- Data Structures
-
-
-
-
-
----------------- Scratchboard
-
 
 
 
