@@ -61,7 +61,7 @@ A:
 =end
 
 def closest_numbers(arr)
-  combos = arr.sort.each_cons(2).to_a.min_by { |x, y| y - x }
+  combos = arr.sort.each_cons(2).to_a#.min_by { |x, y| y - x }
   arr.select { |i| combos.include?(i) }
 end
 

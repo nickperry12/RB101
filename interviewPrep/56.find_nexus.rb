@@ -138,28 +138,28 @@ end
 
 # end
 
-def nexus(users)
-  modUsers = {}
-  lowest_delta = 32498019238
-  users.each do |rank, honor|
-    current_values = modUsers[(rank-honor).abs]
-    if current_values.nil?
-      current_values = []
-    end
-    current_values << rank
-    modUsers[(rank-honor).abs] = current_values
-    if (rank-honor).abs < lowest_delta
-      lowest_delta = (rank-honor).abs
-    end
-  end
+# def nexus(users)
+#   modUsers = {}
+#   lowest_delta = 32498019238
+#   users.each do |rank, honor|
+#     current_values = modUsers[(rank-honor).abs]
+#     if current_values.nil?
+#       current_values = []
+#     end
+#     current_values << rank
+#     modUsers[(rank-honor).abs] = current_values
+#     if (rank-honor).abs < lowest_delta
+#       lowest_delta = (rank-honor).abs
+#     end
+#   end
 
-  modUsers[lowest_delta].min
-end
-
-
+#   modUsers[lowest_delta].min
+# end
 
 
-p nexus({30=>25, 25=>15, 20=>5, 15=>5, 10=>15, 5=>30})
+
+
+p nexus({30=>25, 25=>15, 20=>5, 15=>5, 10=>15, 5=>30}) == 10
 p nexus({1 => 3, 3 => 3, 5 => 1}) == 3
 p nexus({1 => 10, 2 => 6, 3 => 4, 5 => 1}) == 3
 p nexus({1 => 10, 2 => 3, 3 => 4, 5 => 1}) == 2
