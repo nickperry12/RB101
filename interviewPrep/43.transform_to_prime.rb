@@ -113,18 +113,7 @@ To check if the result is prime
 =end
 
 def is_prime?(num)
-  result = true
-
-  (2..num).each do |i|
-    if num % i == 0 && i != num
-      result = false
-      break
-    elsif num % i == 0 && num == i
-      result = true
-    end
-  end
-
-  result
+  !((2...num).any? { |i| num % i == 0 })
 end
 
 def minimum_number(arr)

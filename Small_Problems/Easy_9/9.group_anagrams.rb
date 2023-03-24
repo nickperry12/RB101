@@ -82,8 +82,16 @@ Iterate over the given array
 =end
 
 def words(arr)
-  result = arr.group_by { |k| k.chars.sort.join }
-  result.each_value { |value| p value }
+  # result = arr.group_by { |k| k.chars.sort.join }
+  # result.each_value { |value| p value }
+  unique_arr = arr.uniq
+
+  unique_arr.each_with_object(result = Hash.new) do |item, hash|
+    sorted_word = item.chars.sort.join
+    hash[sorted_word] = arr.select { |word| word.chars.sort.join == sorted_word }
+  end
+
+  result.each_value { |val| p val }
 end
 
 
