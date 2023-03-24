@@ -103,10 +103,9 @@ def smaller_numbers_than_current(arr)
       if arr[i] > unique_values[ii]
         count += 1
       end
-      result << count if ii == unique_values.size - 1
     end
+    result << count
   end
-
 
   result
 end
