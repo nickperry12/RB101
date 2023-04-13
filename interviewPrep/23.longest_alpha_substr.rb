@@ -90,11 +90,10 @@ def longest(str)
 
   (0...str.size).each do |i|
     (i...str.size).each do |ii|
-      result << str[i..ii]
+      result << str[i..ii] if str[i..ii] == str[i..ii].chars.sort.join
     end
   end
 
-  result.select! { |substr| substr.chars == substr.chars.sort }
   result.max_by { |substr| substr.size }
 end
 
