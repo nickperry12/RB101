@@ -32,7 +32,7 @@ Method will take two arguments
 
 def calculate_area(length, width)
   area = length * width
-  sqft = (area_in_meters) * 10.7639
+  sqft = (area) * 10.7639
 
   puts "The area in meters is #{area}."
   puts "The square footage is #{sqft.round(2)}."

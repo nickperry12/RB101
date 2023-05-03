@@ -18,7 +18,7 @@ Restate the problem:
 
 Create a method that accepts a string as an argument, and returns a new string
 where the character in front of an alphanumerical is replaced by that same
-character times the digit behind it. All digits should be removed from the fina
+character times the digit behind it. All digits should be removed from the final
 string.
 
 

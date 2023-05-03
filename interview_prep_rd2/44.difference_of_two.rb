@@ -101,7 +101,6 @@ def twos_difference(arr)
   pairs
 end
 
-
 p twos_difference([1, 2, 3, 4]) == [[1, 3], [2, 4]]
 p twos_difference([1, 3, 4, 6]) == [[1, 3], [4, 6]]
 p twos_difference([0, 3, 1, 4]) == [[1, 3]]

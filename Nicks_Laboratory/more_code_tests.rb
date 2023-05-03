@@ -1,106 +1,68 @@
-# Have the method letter_changes(str) take the str parameter being passed and
-# modify it using the following algorithm. Replace every letter in the string
-# with the 3rd letter following it in the alphabet (ie. c becomes f, Z becomes C).
-# Then return this modified string.
 =begin
----------------- Problem
-Restate the problem:
+Find the longest substring in alphabetical order.
 
-Create a method that accepts a string for an argument, and returns a modified
-string where each letter is changed to the 3rd letter ahead in the alphabet.
-The lowercase letters can be changed to uppercased dependent on position in the
-alphabet ('x', 'y', 'z')
+Example: the longest alphabetical substring in "asdfaaaabbbbcttavvfffffdf" is
+"aaaabbbbctt".
 
-
-Input: String
-
-Output: String
-
-Explicit Rules:
-- move every alphabetical letter 3 positions ahead in the alphabet
-- if the letters are uppercased and are the last 3 (x, y, z), loop around back
-  to the beginning of the uppercased alphas
-
-
-Implicit Rules:
-- ignore all special characters
-- only processing letters
-
-
-Modelling:
-
-I: "this long cake@&"
-O: "wklv orqj fdnh@&"
-
-['t', 'h', 'i', 's', ' ' .... ]
-
-Iterate/transform => if it's a letter => transform => 't' => order number: 116
-  => add three => 119 => convert back to a char => 'w'
-
-I: "EMAILZ@gmail.com"
-O: "HPDLOC@jpdlo.frp"
-
-handling (X, Y, Z) differently => if we're iterating over these chars =>
-  subtract 23 from their order number => 'X' => 88 => subtract 23 => 55 => 'A'
-
----------------- Examples
-
-p letter_changes("this long cake@&") == "wklv orqj fdnh@&"
-p letter_changes("Road trip9") == "Urdg wuls9"
-p letter_changes("EMAILZ@gmail.com") == "HPDLOC@jpdlo.frp"
-p letter_changes('xyz') == ('abc')
-
----------------- Data Structures
-
-I: String
-Intermediate: Array
-O: String
-
-
----------------- Algorithm
-
-/* given a string `str` */
-
-Initialize `chars` to collection of the individual characters of `str`
-
-Iterate over and transform the elements within `chars`
-  - If the char is an alphabetical letter
-    - If the char is 'X', 'Y' or 'Z'
-      - Convert the char to its order number in the ASCII table, and subtract 23
-        and then convert back to a character
-    - If the char is 'x', 'y', 'z'
-      - Convert the char to its order number and substract 55, and convert to
-        a char
-    - For every other letter, convert to it's order number, add 3, convert back
-      to a char
-  - Else if not a letter, just return the character
-
-Join `chars` back together
-  - Return the resulting string
+There are tests with strings up to 10 000 characters long so your code will need
+to be efficient. The input will only consist of lowercase characters and will be
+at least one letter long. If there are multiple solutions, return the one that
+appears first.
 =end
 
-def letter_changes(str)
-  chars = str.chars
+=begin
+  Breakdown
+    - The substring breaks when the next char is smaller
+    - The input will be atleast one char long
+    - Return the first longest substring
+    - Input: String
+    - Output: String
 
-  chars.map! do |char|
-    if char == 'X' || char == 'Y' || char == 'Z'
-      (char.ord - 23).chr
-    elsif char == 'x' || char == 'y' || char == 'z'
-      (char.ord - 23).chr
-    elsif ('A'..'z').include?(char)
-      (char.ord + 3).chr
-    else
-      char
-    end
+  Problem
+    - Collect all the valid substrings
+    - Filter the first longest substring
+    - Return the resultant substring
+  
+  Data structuring
+    - 'nab' => 'n', 'a', 'ab', 'b'
+    - Break the inner loop if the next element is smaller than the current
+
+  Algorithm
+    - Intialise a variable longest_stringstring & assign it an empty string object
+    - Iterate over all the valid substrings
+      - If the current substring is longer than current longest
+      - Save it as the longest substring
+    - Return the longest substring
+
+    - To find valid substrings
+    - Iterate from 0 to length of the str - 1, save the current element as index
+      - Iterate from 1 to length of the str - index, save the current element as length
+        - Add the string formed using str[index, length] to an array object
+        - Break if element at str[index, length + 1][-1] < str[index, length][-1]
+
+=end
+
+def longest(str)
+  longest_substring = ''
+
+  all_substrings(str).each do |substring|
+    longest_substring = substring if substring.length > longest_substring.length
   end
 
-  chars.join
+  longest_substring
 end
 
+# alternate
 
+def longest(str)
+  all_substrings(str).max_by { |substring| substring.length }
+end
 
-
-p letter_changes("this long cake@&") == "wklv orqj fdnh@&"
-p letter_changes("Road trip9") == "Urdg wuls9"
-p letter_changes("EMAILZ@gmail.com") == "HPDLOC@jpdlo.frp"
-p letter_changes('xyz') == ('abc')
+def all_substrings(str)
+  (0...str.length).each_with_object([]) do |index, arr|
+    (1..str.length - index).each do |length|
+      arr << str[index, length]
+      break if str[index, length + 1][-1] < str[index, length][-1]
+    end
+  end
+end
