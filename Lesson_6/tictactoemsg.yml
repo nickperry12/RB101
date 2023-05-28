@@ -14,7 +14,9 @@ squares, it's a tie!\n
 \n
 Get ready to play and good luck!"
 invalid_name: "Invalid input. Please enter a valid name! (Field cannot be left blank)"
-play_again?: "Would you like to play again?"
+play_again?: "That was a great game! Way to battle it out!"\n
+Would you like to play again?
+Please enter either '(y)es' or '(n)o'.
 player: "wins! Congratuations!"
 cpu_wins: "The computer wins... Better luck next time!"
 goodbye: "Thank you for playing Tic Tac Toe, good-bye!"

@@ -17,7 +17,7 @@ of digit substrings, that when converted to an integer, are an odd value.
 
 Input: String
 
-Output: Integr
+Output: Integer
 
 
 
