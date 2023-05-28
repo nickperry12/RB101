@@ -111,37 +111,37 @@ Return `result`
 
 =end
 
-def group_in_10s(*arr)
-  return [] if arr.empty?
-  result = []
-  arr = arr.sort
-  arr_copy = arr.dup
-  range_start = 0
-  range_end = 9
+# def group_in_10s(*arr)
+#   return [] if arr.empty?
+#   result = []
+#   arr = arr.sort
+#   arr_copy = arr.dup
+#   range_start = 0
+#   range_end = 9
 
-  loop do
-   subarray = []
-   arr.each do |num|
-     if num >= range_start && num <= range_end
-       subarray << num
-       arr_copy.shift
-     end
-   end
+#   loop do
+#    subarray = []
+#    arr.each do |num|
+#      if (range_start..range_end) === num
+#        subarray << num
+#        arr_copy.shift
+#      end
+#    end
 
-   if subarray.empty?
-     result << nil
-   else
-     result << subarray
-   end
+#    if subarray.empty?
+#      result << nil
+#    else
+#      result << subarray
+#    end
 
-   range_start += 10
-   range_end += 10
+#    range_start += 10
+#    range_end += 10
 
-   break if arr_copy.empty?
-  end
+#    break if arr_copy.empty?
+#   end
 
-  result
-end
+#   result
+# end
 
 def group_in_10s(*args)
   return [] unless args.any?
@@ -151,8 +151,8 @@ def group_in_10s(*args)
 end
 
 
-# p group_in_10s(1,2,3) == [[1, 2, 3]]
-p group_in_10s( 8, 12, 38, 3, 17, 19, 25, 35, 50 ) #== [[3, 8], [12, 17, 19], [25], [35, 38], nil, [50]]
-# p group_in_10s( 12, 10, 11, 13, 25, 28, 29, 49, 51, 90 ) == [nil, [10, 11, 12, 13 ], [25, 28, 29], nil, [49], [51], nil, nil, nil, [90]]
-# p group_in_10s() == []
-# p group_in_10s(100) == [nil, nil, nil, nil, nil, nil, nil, nil , nil, nil, [100]]
+p group_in_10s(1,2,3) == [[1, 2, 3]]
+p group_in_10s( 8, 12, 38, 3, 17, 19, 25, 35, 50 ) == [[3, 8], [12, 17, 19], [25], [35, 38], nil, [50]]
+p group_in_10s( 12, 10, 11, 13, 25, 28, 29, 49, 51, 90 ) == [nil, [10, 11, 12, 13 ], [25, 28, 29], nil, [49], [51], nil, nil, nil, [90]]
+p group_in_10s() == []
+p group_in_10s(100) == [nil, nil, nil, nil, nil, nil, nil, nil , nil, nil, [100]]
