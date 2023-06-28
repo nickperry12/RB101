@@ -151,8 +151,8 @@ def group_in_10s(*args)
 end
 
 
-# p group_in_10s(1,2,3) == [[1, 2, 3]]
-p group_in_10s( 8, 12, 38, 3, 17, 19, 25, 35, 50 ) #== [[3, 8], [12, 17, 19], [25], [35, 38], nil, [50]]
-# p group_in_10s( 12, 10, 11, 13, 25, 28, 29, 49, 51, 90 ) == [nil, [10, 11, 12, 13 ], [25, 28, 29], nil, [49], [51], nil, nil, nil, [90]]
-# p group_in_10s() == []
-# p group_in_10s(100) == [nil, nil, nil, nil, nil, nil, nil, nil , nil, nil, [100]]
+p group_in_10s(1,2,3) == [[1, 2, 3]]
+p group_in_10s( 8, 12, 38, 3, 17, 19, 25, 35, 50 ) == [[3, 8], [12, 17, 19], [25], [35, 38], nil, [50]]
+p group_in_10s( 12, 10, 11, 13, 25, 28, 29, 49, 51, 90 ) == [nil, [10, 11, 12, 13 ], [25, 28, 29], nil, [49], [51], nil, nil, nil, [90]]
+p group_in_10s() == []
+p group_in_10s(100) == [nil, nil, nil, nil, nil, nil, nil, nil , nil, nil, [100]]
