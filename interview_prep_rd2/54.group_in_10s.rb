@@ -111,37 +111,37 @@ Return `result`
 
 =end
 
-def group_in_10s(*arr)
-  return [] if arr.empty?
-  result = []
-  arr = arr.sort
-  arr_copy = arr.dup
-  range_start = 0
-  range_end = 9
+# def group_in_10s(*arr)
+#   return [] if arr.empty?
+#   result = []
+#   arr = arr.sort
+#   arr_copy = arr.dup
+#   range_start = 0
+#   range_end = 9
 
-  loop do
-   subarray = []
-   arr.each do |num|
-     if num >= range_start && num <= range_end
-       subarray << num
-       arr_copy.shift
-     end
-   end
+#   loop do
+#    subarray = []
+#    arr.each do |num|
+#      if (range_start..range_end) === num
+#        subarray << num
+#        arr_copy.shift
+#      end
+#    end
 
-   if subarray.empty?
-     result << nil
-   else
-     result << subarray
-   end
+#    if subarray.empty?
+#      result << nil
+#    else
+#      result << subarray
+#    end
 
-   range_start += 10
-   range_end += 10
+#    range_start += 10
+#    range_end += 10
 
-   break if arr_copy.empty?
-  end
+#    break if arr_copy.empty?
+#   end
 
-  result
-end
+#   result
+# end
 
 def group_in_10s(*args)
   return [] unless args.any?
