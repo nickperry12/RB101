@@ -84,9 +84,10 @@ def diamond(n)
   rows = (1..n).step(2).to_a
   rows += rows[0..-2].reverse
 
-  rows.each do |row|
-    puts ('*' * row).center(n)
-  end
+  # rows.each do |row|
+  #   puts ('*' * row).center(n)
+  # end
+  rows.map! { |row| ("*" * row).center(n) }.join("\n")
 end
 
-diamond(17)
+puts diamond(17)
